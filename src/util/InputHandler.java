@@ -2,8 +2,13 @@ package util;
 import java.util.Scanner;
 
 public class InputHandler {
-    public static String validasiString(String prompt, Scanner sc) {
-        System.out.println(prompt);
-        return sc.nextLine();
+    private Scanner scanner = new Scanner(System.in);
+    public String inputString(String pesan) {
+        System.out.println(pesan);
+        return scanner.nextLine();
+    }
+    public int inputInt(String pesan) {
+        System.out.println(pesan);
+        return Integer.parseInt(scanner.nextLine());
     }
 }
