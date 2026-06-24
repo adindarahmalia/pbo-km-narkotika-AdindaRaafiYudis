@@ -2,6 +2,7 @@ package app;
 
 import model.KnowledgeRepository;
 import model.Putusan;
+import model.StatistikPutusan;
 
 public class Main {
 
@@ -28,5 +29,8 @@ public class Main {
         System.out.println(repo.getSemua());
 
         System.out.println("\nTOTAL DATA: " + repo.getTotalData());
+
+        StatistikPutusan stat = new StatistikPutusan(repo.getSemua());
+        stat.tampilkan();
     }
 }
