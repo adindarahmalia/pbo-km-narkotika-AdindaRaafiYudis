@@ -1,8 +1,9 @@
 package app;
+import controller.KnowledgeController;
 
 public class Main {
     public static void main(String[] args){
-
-        System.out.println("KMS Putusan Pengadilan Narkotika");
+        KnowledgeController controller = new KnowledgeController();
+        controller.start();
     }
 }

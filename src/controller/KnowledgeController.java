@@ -13,6 +13,8 @@ public class KnowledgeController {
         repository = new KnowledgeRepository();
         view = new ConsoleView();
         input = new InputHandler();
-
+    }
+    public void start() {
+        view.tampilkanMenu();
     }
 }
