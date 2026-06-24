@@ -1,4 +1,4 @@
-package src.view;
+package view;
 
 public class ConsoleView {
     public void tampilkanDashboard(int totalPutusan, double rataVonis, String jenisTerbanyak) {
