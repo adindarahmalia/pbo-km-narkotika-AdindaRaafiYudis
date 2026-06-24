@@ -28,7 +28,7 @@ public class KnowledgeRepository {
      }
 
      public List<Putusan> getSemua(){
-        return data;
+         return new ArrayList<>(data);
      }
 
      public List<Putusan> filterByJenis(String jenis){

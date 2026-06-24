@@ -1,6 +1,6 @@
 package model;
 
-public class Putusan {
+public class Putusan extends DataEntity implements Identifiable {
 
     private String nomorPerkara;
     private String namaTerdakwa;
@@ -16,6 +16,13 @@ public class Putusan {
         this.tahun = tahun;
         this.jenisNarkotika = jenisNarkotika;
         this.putusan = putusan;
+
+        touch();
+    }
+
+    @Override
+    public String getId(){
+        return nomorPerkara;
     }
 
     public String getNomorPerkara(){
@@ -38,7 +45,12 @@ public class Putusan {
     }
 
     @Override
-    public String toString(){
-        return nomorPerkara + " | " + namaTerdakwa + " | " + pasal + " | " + tahun + " | " +jenisNarkotika;
+    public String toString() {
+        return nomorPerkara + " | " +
+                namaTerdakwa + " | " +
+                pasal + " | " +
+                jenisNarkotika + " | " +
+                tahun + " | " +
+                putusan;
     }
 }
