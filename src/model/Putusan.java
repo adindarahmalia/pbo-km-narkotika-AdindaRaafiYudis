@@ -38,7 +38,12 @@ public class Putusan {
     }
 
     @Override
-    public String toString(){
-        return nomorPerkara + " | " + namaTerdakwa + " | " + pasal + " | " + tahun + " | " +jenisNarkotika;
+    public String toString() {
+        return nomorPerkara + " | " +
+                namaTerdakwa + " | " +
+                pasal + " | " +
+                jenisNarkotika + " | " +
+                tahun + " | " +
+                putusan;
     }
 }

@@ -22,7 +22,11 @@ public class StatistikPutusan {
         for (Putusan p : data){
             totalTahun += p.getTahun();
         }
-        rataRataTahun = (double) totalTahun / totalData;
+        if (totalData == 0) {
+            rataRataTahun = 0;
+            jenisTerbanyak = "-";
+            return;
+        }
 
         Map<String, Integer> counter = new HashMap<>();
 
