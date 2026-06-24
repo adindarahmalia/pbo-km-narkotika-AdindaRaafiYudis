@@ -11,8 +11,9 @@ public class KnowledgeRepository {
         data.add(p);
     }
 
-    public boolean hapus(String nomorPerkara){
-        return data.removeIf(p-> p.getNomorPerkara().equals(nomorPerkara));
+
+    public boolean hapusByNomor(String nomor){
+        return data.removeIf(p-> p.getNomorPerkara().equalsIgnoreCase(nomor));
     }
 
     public List<Putusan> cari(String keyword){
@@ -28,5 +29,30 @@ public class KnowledgeRepository {
 
      public List<Putusan> getSemua(){
         return data;
+     }
+
+     public List<Putusan> filterByJenis(String jenis){
+        List<Putusan> hasil = new ArrayList<>();
+
+        for (Putusan p : data){
+            if (p.getJenisNarkotika().equalsIgnoreCase(jenis)){
+                hasil.add(p);
+            }
+        }
+        return hasil;
+     }
+
+     public List<Putusan> filterByTahun(int tahun){
+        List<Putusan> hasil = new ArrayList<>();
+
+        for (Putusan p : data){
+            if (p.getTahun() == tahun){
+                hasil.add(p);
+            }
+        }
+        return hasil;
+     }
+     public int getTotalData(){
+        return data.size();
      }
 }
