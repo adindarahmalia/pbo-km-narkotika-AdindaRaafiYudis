@@ -1,68 +1,62 @@
 package model;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class StatistikPutusan {
 
-
-    private int totalData;
-    private double rataRataTahun;
-    private String jenisTerbanyak;
-
-    public StatistikPutusan(List<Putusan> data){
-        hitung(data);
+    public static int totalPutusan(List<Putusan> data) {
+        return data.size();
     }
 
-    private void hitung(List<Putusan> data){
-        totalData = data.size();
+    public static double rataRataVonis(List<Putusan> data) {
+        if (data.isEmpty()) return 0;
 
-        int totalTahun = 0;
-        for (Putusan p : data){
-            totalTahun += p.getTahun();
+        int total = 0;
+        for (Putusan p : data) {
+            total += p.getVonisHukuman();
         }
-        if (totalData == 0) {
-            rataRataTahun = 0;
-            jenisTerbanyak = "-";
-            return;
+        return (double) total / data.size();
+    }
+
+    public static double rataRataDenda(List<Putusan> data) {
+        if (data.isEmpty()) return 0;
+
+        double total = 0;
+        for (Putusan p : data) {
+            total += p.getVonisDenda();
+        }
+        return total / data.size();
+    }
+
+    public static String jenisNarkotikaTerbanyak(List<Putusan> data) {
+        Map<String, Integer> map = new HashMap<>();
+
+        for (Putusan p : data) {
+            map.put(p.getJenisNarkotika(),
+                    map.getOrDefault(p.getJenisNarkotika(), 0) + 1);
         }
 
-        Map<String, Integer> counter = new HashMap<>();
-
-        for (Putusan p : data){
-            String jenis = p.getJenisNarkotika();
-            counter.put(jenis, counter.getOrDefault(jenis, 0) + 1);
-        }
-
+        String maxKey = "-";
         int max = 0;
-        String maxJenis = "";
 
-        for (Map.Entry<String, Integer> entry : counter.entrySet()){
-            if (entry.getValue() > max){
-                max = entry.getValue();
-                maxJenis = entry.getKey();
+        for (String key : map.keySet()) {
+            if (map.get(key) > max) {
+                max = map.get(key);
+                maxKey = key;
             }
         }
-        jenisTerbanyak = maxJenis;
+
+        return maxKey;
     }
 
-    public int getTotalData(){
-        return totalData;
-    }
+    public static Map<String, Integer> distribusiPeran(List<Putusan> data) {
+        Map<String, Integer> map = new HashMap<>();
 
-    public double getRataRataTahun() {
-        return rataRataTahun;
-    }
+        for (Putusan p : data) {
+            map.put(p.getPeranTerdakwa(),
+                    map.getOrDefault(p.getPeranTerdakwa(), 0) + 1);
+        }
 
-    public String getJenisTerbanyak() {
-        return jenisTerbanyak;
-    }
-
-    public void tampilkan() {
-        System.out.println("=== STATISTIK PUTUSAN ===");
-        System.out.println("Total Data       : " + totalData);
-        System.out.println("Rata-rata Tahun  : " + rataRataTahun);
-        System.out.println("Jenis Terbanyak  : " + jenisTerbanyak);
+        return map;
     }
 }

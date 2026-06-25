@@ -7,52 +7,84 @@ public class KnowledgeRepository {
 
     private List<Putusan> data = new ArrayList<>();
 
-    public void tambah(Putusan p){
+
+    public void simpan(Putusan p) {
         data.add(p);
     }
 
 
-    public boolean hapusByNomor(String nomor){
-        return data.removeIf(p-> p.getNomorPerkara().equalsIgnoreCase(nomor));
+    public boolean hapusByNomor(String nomor) {
+        return data.removeIf(p ->
+                p.getNomorPerkara().equalsIgnoreCase(nomor));
     }
 
-    public List<Putusan> cari(String keyword){
-        List<Putusan> hasil = new ArrayList<>();
 
-        for (Putusan p : data){
-            if (p.getNamaTerdakwa().toLowerCase().contains(keyword.toLowerCase()) || p.getNomorPerkara().toLowerCase().contains(keyword.toLowerCase())){
-                hasil.add(p);
-            }
-        }
-        return hasil;
-     }
+    public List<Putusan> getDaftarSemua() {
+        return new ArrayList<>(data);
+    }
 
-     public List<Putusan> getSemua(){
-         return new ArrayList<>(data);
-     }
 
-     public List<Putusan> filterByJenis(String jenis){
-        List<Putusan> hasil = new ArrayList<>();
-
-        for (Putusan p : data){
-            if (p.getJenisNarkotika().equalsIgnoreCase(jenis)){
-                hasil.add(p);
-            }
-        }
-        return hasil;
-     }
-
-     public List<Putusan> filterByTahun(int tahun){
-        List<Putusan> hasil = new ArrayList<>();
-
-        for (Putusan p : data){
-            if (p.getTahun() == tahun){
-                hasil.add(p);
-            }
-        }
-        return hasil;
-     }
-     public int getTotalData(){
+    public int getTotalData() {
         return data.size();
-     }
+    }
+
+
+    public Putusan cariByNomor(String nomor) {
+        for (Putusan p : data) {
+            if (p.getNomorPerkara().equalsIgnoreCase(nomor)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+
+    public List<Putusan> cariByNama(String nama) {
+        List<Putusan> hasil = new ArrayList<>();
+
+        for (Putusan p : data) {
+            if (p.getNamaTerdakwa().toLowerCase()
+                    .contains(nama.toLowerCase())) {
+                hasil.add(p);
+            }
+        }
+        return hasil;
+    }
+
+
+    public List<Putusan> filterByJenisNarkotika(String jenis) {
+        List<Putusan> hasil = new ArrayList<>();
+
+        for (Putusan p : data) {
+            if (p.getJenisNarkotika().equalsIgnoreCase(jenis)) {
+                hasil.add(p);
+            }
+        }
+        return hasil;
+    }
+
+
+    public List<Putusan> filterByPengadilan(String pengadilan) {
+        List<Putusan> hasil = new ArrayList<>();
+
+        for (Putusan p : data) {
+            if (p.getPengadilan().equalsIgnoreCase(pengadilan)) {
+                hasil.add(p);
+            }
+        }
+        return hasil;
+    }
+
+
+    public List<Putusan> filterByRentangVonis(int min, int max) {
+        List<Putusan> hasil = new ArrayList<>();
+
+        for (Putusan p : data) {
+            if (p.getVonisHukuman() >= min &&
+                    p.getVonisHukuman() <= max) {
+                hasil.add(p);
+            }
+        }
+        return hasil;
+    }
 }
