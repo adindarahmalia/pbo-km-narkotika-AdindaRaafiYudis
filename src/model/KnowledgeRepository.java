@@ -7,37 +7,54 @@ public class KnowledgeRepository {
 
     private List<Putusan> data = new ArrayList<>();
 
+
     public void simpan(Putusan p) {
         data.add(p);
     }
 
+
     public boolean hapusByNomor(String nomor) {
-        return data.removeIf(p -> p.getNomorPerkara().equalsIgnoreCase(nomor));
+        return data.removeIf(p ->
+                p.getNomorPerkara().equalsIgnoreCase(nomor));
     }
 
-    public List<Putusan> getSemuaData() {
+
+    public List<Putusan> getDaftarSemua() {
         return new ArrayList<>(data);
     }
 
+
+    public int getTotalData() {
+        return data.size();
+    }
+
+
     public Putusan cariByNomor(String nomor) {
         for (Putusan p : data) {
-            if (p.getNomorPerkara().equalsIgnoreCase(nomor)) return p;
+            if (p.getNomorPerkara().equalsIgnoreCase(nomor)) {
+                return p;
+            }
         }
         return null;
     }
 
+
     public List<Putusan> cariByNama(String nama) {
         List<Putusan> hasil = new ArrayList<>();
+
         for (Putusan p : data) {
-            if (p.getNamaTerdakwa().toLowerCase().contains(nama.toLowerCase())) {
+            if (p.getNamaTerdakwa().toLowerCase()
+                    .contains(nama.toLowerCase())) {
                 hasil.add(p);
             }
         }
         return hasil;
     }
 
+
     public List<Putusan> filterByJenisNarkotika(String jenis) {
         List<Putusan> hasil = new ArrayList<>();
+
         for (Putusan p : data) {
             if (p.getJenisNarkotika().equalsIgnoreCase(jenis)) {
                 hasil.add(p);
@@ -46,8 +63,10 @@ public class KnowledgeRepository {
         return hasil;
     }
 
+
     public List<Putusan> filterByPengadilan(String pengadilan) {
         List<Putusan> hasil = new ArrayList<>();
+
         for (Putusan p : data) {
             if (p.getPengadilan().equalsIgnoreCase(pengadilan)) {
                 hasil.add(p);
@@ -56,10 +75,13 @@ public class KnowledgeRepository {
         return hasil;
     }
 
+
     public List<Putusan> filterByRentangVonis(int min, int max) {
         List<Putusan> hasil = new ArrayList<>();
+
         for (Putusan p : data) {
-            if (p.getVonisHukuman() >= min && p.getVonisHukuman() <= max) {
+            if (p.getVonisHukuman() >= min &&
+                    p.getVonisHukuman() <= max) {
                 hasil.add(p);
             }
         }

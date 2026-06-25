@@ -1,6 +1,7 @@
 package model;
 
-public class Putusan extends DataEntity implements Identifiable {
+public class Putusan {
+
 
     private String nomorPerkara;
     private String pengadilan;
@@ -16,6 +17,10 @@ public class Putusan extends DataEntity implements Identifiable {
     private int vonisHukuman;
     private double vonisDenda;
     private String namaHakim;
+
+
+    private static int jumlahDibuat = 0;
+
 
     public Putusan(
             String nomorPerkara,
@@ -48,15 +53,19 @@ public class Putusan extends DataEntity implements Identifiable {
         this.vonisDenda = vonisDenda;
         this.namaHakim = namaHakim;
 
-        touch();
+        jumlahDibuat++;
     }
 
-    @Override
+
+    public static int getJumlahDibuat() {
+        return jumlahDibuat;
+    }
+
+
     public String getId() {
         return nomorPerkara;
     }
 
-    // ================= GETTER =================
 
     public String getNomorPerkara() {
         return nomorPerkara;
@@ -101,22 +110,41 @@ public class Putusan extends DataEntity implements Identifiable {
         return namaHakim;
     }
 
-    // ================= VIEW SUPPORT =================
+
+    public void tampilkan() {
+        System.out.println(toString());
+    }
+
+    public void tampilkan(boolean detail) {
+        if (detail) {
+            System.out.println(
+                    "Nomor: " + nomorPerkara + "\n" +
+                            "Pengadilan: " + pengadilan + "\n" +
+                            "Tanggal: " + tanggalPutusan + "\n" +
+                            "Terdakwa: " + namaTerdakwa + "\n" +
+                            "Umur: " + umurTerdakwa + "\n" +
+                            "Jenis Kelamin: " + jenisKelamin + "\n" +
+                            "Pekerjaan: " + pekerjaan + "\n" +
+                            "Narkotika: " + jenisNarkotika + "\n" +
+                            "Berat BB: " + beratBarangBukti + "\n" +
+                            "Pasal: " + pasalDilanggar + "\n" +
+                            "Peran: " + peranTerdakwa + "\n" +
+                            "Vonis: " + vonisHukuman + " bulan\n" +
+                            "Denda: " + vonisDenda + "\n" +
+                            "Hakim: " + namaHakim
+            );
+        } else {
+            tampilkan();
+        }
+    }
+
 
     @Override
     public String toString() {
         return nomorPerkara + " | " +
                 namaTerdakwa + " | " +
                 jenisNarkotika + " | " +
-                vonisHukuman + " bulan | " +
+                vonisHukuman + " | " +
                 pengadilan;
-    }
-
-    // memastikan data tidak kosong untuk detail view
-    public boolean isValid() {
-        return nomorPerkara != null &&
-                namaTerdakwa != null &&
-                jenisNarkotika != null &&
-                pengadilan != null;
     }
 }

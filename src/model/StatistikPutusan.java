@@ -1,8 +1,6 @@
 package model;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class StatistikPutusan {
 
@@ -30,7 +28,7 @@ public class StatistikPutusan {
         return total / data.size();
     }
 
-    public static String jenisTerbanyak(List<Putusan> data) {
+    public static String jenisNarkotikaTerbanyak(List<Putusan> data) {
         Map<String, Integer> map = new HashMap<>();
 
         for (Putusan p : data) {
@@ -41,13 +39,24 @@ public class StatistikPutusan {
         String maxKey = "-";
         int max = 0;
 
-        for (String k : map.keySet()) {
-            if (map.get(k) > max) {
-                max = map.get(k);
-                maxKey = k;
+        for (String key : map.keySet()) {
+            if (map.get(key) > max) {
+                max = map.get(key);
+                maxKey = key;
             }
         }
 
         return maxKey;
+    }
+
+    public static Map<String, Integer> distribusiPeran(List<Putusan> data) {
+        Map<String, Integer> map = new HashMap<>();
+
+        for (Putusan p : data) {
+            map.put(p.getPeranTerdakwa(),
+                    map.getOrDefault(p.getPeranTerdakwa(), 0) + 1);
+        }
+
+        return map;
     }
 }
