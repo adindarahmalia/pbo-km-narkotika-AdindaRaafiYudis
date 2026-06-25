@@ -20,8 +20,9 @@ public class ConsoleView {
     }
     public void tampilkanMenu() {
         System.out.println("==================================================");
-        System.out.println("       KMS PUTUSAN PENGADILAN NARKOTIKA       ");
+        System.out.println("         KMS PUTUSAN PENGADILAN NARKOTIKA         ");
         System.out.println("==================================================");
+
         System.out.println("1. Tambah Putusan");
         System.out.println("2. Tampilkan Semua");
         System.out.println("3. Cari Putusan");
@@ -35,45 +36,11 @@ public class ConsoleView {
 
 
         public void tampilkanFormTambah () {
+            System.out.println();
             System.out.println("=================================================");
             System.out.println("               INPUT DATA PUTUSAN                ");
             System.out.println("=================================================");
-
-            System.out.println("\nIDENTITAS PERKARA");
-            System.out.println("--------------------------------------------");
-            System.out.println("Nomor Putusan          : ");
-            System.out.println("Pengadilan             : ");
-            System.out.println("Tanggal Putusan        : ");
-
-            System.out.println("\nIDENTITAS TERDAKWA");
-            System.out.println("--------------------------------------------");
-            System.out.println("Nama Terdakwa          : ");
-            System.out.println("Umur                   : ");
-            System.out.println("Jenis Kelamin          : ");
-            System.out.println("Pekerjaan              : ");
-
-            System.out.println("\nDATA NARKOTIKA");
-            System.out.println("--------------------------------------------");
-            System.out.println("Jenis Narkotika        : ");
-            System.out.println("Berat Barang Bukti     : ");
-
-            System.out.println("\nDATA HUKUM");
-            System.out.println("--------------------------------------------");
-            System.out.println("Pasal Dilanggar        : ");
-            System.out.println("Peran Terdakwa         : ");
-
-            System.out.println("\nVONIS");
-            System.out.println("--------------------------------------------");
-            System.out.println("Vonis Hukuman          : ");
-            System.out.println("Vonis Denda            : ");
-
-            System.out.println("\nHAKIM");
-            System.out.println("--------------------------------------------");
-            System.out.println("Nama Hakim             : ");
-
             System.out.println();
-            System.out.println("[S] Simpan   [R] Reset   [K] Kembali");
-            System.out.println("Pilih: ");
     }
 
     public void tampilkanHeaderRepository() {
@@ -82,17 +49,18 @@ public class ConsoleView {
         System.out.println("               REPOSITORY PUTUSAN                 ");
         System.out.println("==================================================");
 
-        System.out.println("Cari Cepat : ");
-        System.out.println();
-
-        System.out.printf("%-4 %-15 %-20 %-12 %-10 %-15s%n",
+        System.out.printf("%-4 %-15 %-20 %-15 %-10 %-15s%n",
                 "No",
                 "Nomor",
-                "Nama",
-                "Jenis",
+                "Terdakwa",
+                "Narkotika",
                 "Vonis", "Pengadilan");
 
         System.out.println("------------------------------------------------");
+    }
+
+    public void tampilkanDaftarPutusan (int no, String nomor, String nama, String narkotika, String vonis, String pengadilan) {
+        System.out.printf("%-4 %-15 %-20 %-15 %-10s %-15s%n", no, nomor, nama, narkotika, vonis, pengadilan);
     }
 
     public void tampilkanFooterRepository(int totalData) {
@@ -102,31 +70,31 @@ public class ConsoleView {
         System.out.println("[ DETAIL ]  [ HAPUS ]  [ REFRESH ]  [ KEMBALI ]");
     }
 
-    public void tampilkanDetailPutusan() {
+    public void tampilkanDetailPutusan(String nomor, String pengadilan, String tanggal, String nama, String umur, String jenisKelamin, String pekerjaan, String narkotika, String berat, String pasal, String peran, String vonis, String denda, String hakim) {
         System.out.println();
         System.out.println("==================================================");
         System.out.println("                 DETAIL PUTUSAN                   ");
         System.out.println("==================================================");
 
-        System.out.println("Nomor Putusan          : ");
-        System.out.println("Pengadilan             : ");
-        System.out.println("Tanggal Putusan        : ");
+        System.out.println("Nomor Putusan          : " + nomor);
+        System.out.println("Pengadilan             : " + pengadilan);
+        System.out.println("Tanggal Putusan        : " + tanggal);
 
-        System.out.println("Nama Terdakwa          : ");
-        System.out.println("Umur                   : ");
-        System.out.println("Jenis Kelamin          : ");
-        System.out.println("Pekerjaan              : ");
+        System.out.println("Nama Terdakwa          : " + nama);
+        System.out.println("Umur                   : " + umur);
+        System.out.println("Jenis Kelamin          : " + jenisKelamin);
+        System.out.println("Pekerjaan              : " + pekerjaan);
 
-        System.out.println("Jenis Narkotika        : ");
-        System.out.println("Berat Barang Bukti     : ");
+        System.out.println("Jenis Narkotika        : " + narkotika);
+        System.out.println("Berat Barang Bukti     : " + berat);
 
-        System.out.println("Pasal Dilanggar        : ");
-        System.out.println("Peran Terdakwa         : ");
+        System.out.println("Pasal Dilanggar        : " + pasal);
+        System.out.println("Peran Terdakwa         : " + peran);
 
-        System.out.println("Vonis Hukuman          : ");
-        System.out.println("Vonis Denda            : ");
+        System.out.println("Vonis Hukuman          : " + vonis);
+        System.out.println("Vonis Denda            : " + denda);
 
-        System.out.println("Nama Hakim             : ");
+        System.out.println("Nama Hakim             : " + hakim);
 
         System.out.println();
         System.out.println("[ KEMBALI ]");
@@ -140,7 +108,13 @@ public class ConsoleView {
 
         System.out.println("1. Berdasarkan Nomor Perkara");
         System.out.println("2. Berdasarkan Nama Terdakwa");
+
         System.out.println("\nPilih : ");
+    }
+
+    public void tampilkanHasilPencarian() {
+        System.out.println();
+        System.out.println("================== HASIL PENCARIAN =====================");
     }
     public void tampilkanFormFilter() {
         System.out.println();
@@ -152,10 +126,11 @@ public class ConsoleView {
         System.out.println("Pengadilan             : ");
         System.out.println("Min Vonis              : ");
         System.out.println("Max Vonis              : ");
+    }
 
+    public void tampilkanHasilFilter() {
         System.out.println();
-        System.out.println("[ TERAPKAN FILTER ]");
-        System.out.println("[ RESET FILTER ]");
+        System.out.println("================== HASIL FILTER =====================");
     }
 
     public void tampilkanStatistik(int totalPutusan, double rataVonis, double rataDenda, String jenisTerbanyak) {
