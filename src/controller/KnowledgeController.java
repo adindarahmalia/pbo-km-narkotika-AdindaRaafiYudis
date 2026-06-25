@@ -2,6 +2,7 @@ package controller;
 
 import model.KnowledgeRepository;
 import model.Putusan;
+import model.StatistikPutusan;
 import util.InputHandler;
 import view.ConsoleView;
 
@@ -50,52 +51,87 @@ public class KnowledgeController {
     private void tambahPutusan() {
         view.tampilkanFormTambah();
         String nomorPerkara = input.inputString("Nomor Perkara: ");
-        String namaTerdakwa = input.inputString("Nama Terdakwa: ");
-        String pasal = input.inputString("Pasal: ");
-        int tahun = input.inputInt("Tahun: ");
-        String jenisNarkotika = input.inputString("Jenis Narkotika: ");
-        String putusan = input.inputString("Putusan: ");
-        Putusan data = new Putusan(nomorPerkara, namaTerdakwa, pasal, tahun, jenisNarkotika, putusan);
-        repository.tambah(data);
+        String pengadilan = input.inputHuruf("Pengadilan: ");
+        String tanggalPutusan = input.inputString("Tanggal Putusan: ");
+
+        String namaTerdakwa = input.inputHuruf("Nama Terdakwa: ");
+        int umurTerdakwa = input.inputInt("Umur Terdakwa: ");
+        String jenisKelamin = input.inputHuruf("Jenis Kelamin: ");
+        String pekerjaan = input.inputHuruf("Pekerjaan: ");
+
+        String jenisNarkotika = input.inputHuruf("Jenis Narkotika: ");
+        double beratBarangBukti = input.inputDouble("Berat Barang Bukti: ");
+
+        String pasalDilanggar = input.inputString("Pasal Dilanggar: ");
+        String peranTerdakwa = input.inputHuruf("Peran Terdakwa: ");
+
+        int vonisHukuman = input.inputInt("Vonis Hukuman (bulan): ");
+        double vonisDenda = input.inputDouble("Vonis Denda: ");
+
+        String namaHakim = input.inputHuruf("Nama Hakim: ");
+
+        Putusan data = new Putusan(nomorPerkara, pengadilan, tanggalPutusan, namaTerdakwa, umurTerdakwa, jenisKelamin, pekerjaan, jenisNarkotika, beratBarangBukti, pasalDilanggar, peranTerdakwa, vonisHukuman, vonisDenda, namaHakim);
+        repository.simpan(data);
 
         view.tampilkanSukses("Data putusan berhasil ditambahkan");
     }
     private void tampilkanSemua() {
-        if (repository.getSemua().isEmpty()) {
+        if (repository.getDaftarSemua().isEmpty()) {
             view.tampilkanError("Belum ada data putusan");
             return;
         }
         view.tampilkanPesan("=== DAFTAR PUTUSAN ===");
-        for (Putusan p : repository.getSemua()) {
+        for (Putusan p : repository.getDaftarSemua()) {
             System.out.println(p);
         }
     }
     private void cariPutusan() {
-        String keyword = input.inputString("Masukkan keyword pencarian: ");
-        var hasil = repository.cari(keyword);
-        if (hasil.isEmpty()) {
-            view.tampilkanError("Data tidak ditemukan");
-            return;
-        }
-        view.tampilkanPesan("=== HASIL PENCARIAN ===");
-        for (Putusan p : hasil) {
-            System.out.println(p);
+        view.tampilkanFormCari();
+        int pilihanCari = input.inputInt("Pilih: ");
+        if (pilihanCari == 1) {
+            String nomor = input.inputString("Nomor Perkara: ");
+            Putusan hasil = repository.cariByNomor(nomor);
+            if (hasil == null) {
+                view.tampilkanError("Data tidak ditemukan");
+            }
+            System.out.println(hasil);
+        } else if (pilihanCari == 2) {
+            String nama = input.inputString("Nama Terdakwa: ");
+            var hasil = repository.cariByNama(nama);
+            if (hasil.isEmpty()) {
+                view.tampilkanError("Data tidak didtemukan");
+                return;
+            }
+            for (Putusan p : hasil) {
+                System.out.println(p);
+            }
         }
     }
     private void filterPutusan() {
-        int pilihanFilter = input.inputInt("Filter berdasarkan:\n" + "1. Jenis narkotika\n" + "2. Tahun\n" + "Pilih: ");
-        switch (pilihanFilter) {
+        System.out.println("1. Jenis Narkotika");
+        System.out.println("2. Pengadilan");
+        System.out.println("3. Rentang Vonis");
+        int pilih = input.inputInt("Pilih: ");
+        switch (pilih) {
             case 1:
                 String jenis = input.inputString("Jenis Narkotika: ");
-                var hasilJenis = repository.filterByJenis(jenis);
+                var hasilJenis = repository.filterByJenisNarkotika(jenis);
                 for (Putusan p : hasilJenis) {
                     System.out.println(p);
                 }
                 break;
             case 2:
-                int tahun = input.inputInt("Tahun: ");
-                var hasilTahun = repository.filterByTahun(tahun);
-                for (Putusan p : hasilTahun) {
+                String pengadilan = input.inputString("Pengadilan: ");
+                var hasilPengadilan = repository.filterByPengadilan(pengadilan);
+                for (Putusan p : hasilPengadilan) {
+                    System.out.println(p);
+                }
+                break;
+            case 3:
+                int min = input.inputInt("Min Vonis: ");
+                int max = input.inputInt("Max Vonis: ");
+                var hasilVonis = repository.filterByRentangVonis(min, max);
+                for (Putusan p : hasilVonis) {
                     System.out.println(p);
                 }
                 break;
@@ -104,8 +140,12 @@ public class KnowledgeController {
         }
     }
     private void tampilkanStatistik() {
-        int total = repository.getTotalData();
-        view.tampilkanStatistik(total, 0, 0, "Belum dihitung");
+        var data = repository.getDaftarSemua();
+        int total = StatistikPutusan.totalPutusan(data);
+        double rataVonis = StatistikPutusan.rataRataVonis(data);
+        double rataDenda = StatistikPutusan.rataRataDenda(data);
+        String jenis = StatistikPutusan.jenisNarkotikaTerbanyak(data);
+        view.tampilkanStatistik(total, rataVonis, rataDenda, jenis);
     }
     private void hapusPutusan() {
         String nomor = input.inputString("Masukkan Nomor Perkara yang akan dihapus: ");
