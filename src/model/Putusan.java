@@ -32,7 +32,7 @@ public class Putusan extends DataEntity implements Identifiable {
             int vonisHukuman,
             double vonisDenda,
             String namaHakim
-    ){
+    ) {
         this.nomorPerkara = nomorPerkara;
         this.pengadilan = pengadilan;
         this.tanggalPutusan = tanggalPutusan;
@@ -52,9 +52,11 @@ public class Putusan extends DataEntity implements Identifiable {
     }
 
     @Override
-    public String getId(){
+    public String getId() {
         return nomorPerkara;
     }
+
+    // ================= GETTER =================
 
     public String getNomorPerkara() {
         return nomorPerkara;
@@ -99,6 +101,7 @@ public class Putusan extends DataEntity implements Identifiable {
         return namaHakim;
     }
 
+    // ================= VIEW SUPPORT =================
 
     @Override
     public String toString() {
@@ -107,5 +110,13 @@ public class Putusan extends DataEntity implements Identifiable {
                 jenisNarkotika + " | " +
                 vonisHukuman + " bulan | " +
                 pengadilan;
+    }
+
+    // memastikan data tidak kosong untuk detail view
+    public boolean isValid() {
+        return nomorPerkara != null &&
+                namaTerdakwa != null &&
+                jenisNarkotika != null &&
+                pengadilan != null;
     }
 }

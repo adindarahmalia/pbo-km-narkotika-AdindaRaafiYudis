@@ -6,20 +6,28 @@ import java.util.Map;
 
 public class StatistikPutusan {
 
-    public static int total(List<Putusan> data) {
+    public static int totalPutusan(List<Putusan> data) {
         return data.size();
     }
 
     public static double rataRataVonis(List<Putusan> data) {
+        if (data.isEmpty()) return 0;
+
         int total = 0;
-        for (Putusan p : data) total += p.getVonisHukuman();
-        return data.isEmpty() ? 0 : (double) total / data.size();
+        for (Putusan p : data) {
+            total += p.getVonisHukuman();
+        }
+        return (double) total / data.size();
     }
 
     public static double rataRataDenda(List<Putusan> data) {
+        if (data.isEmpty()) return 0;
+
         double total = 0;
-        for (Putusan p : data) total += p.getVonisDenda();
-        return data.isEmpty() ? 0 : total / data.size();
+        for (Putusan p : data) {
+            total += p.getVonisDenda();
+        }
+        return total / data.size();
     }
 
     public static String jenisTerbanyak(List<Putusan> data) {
