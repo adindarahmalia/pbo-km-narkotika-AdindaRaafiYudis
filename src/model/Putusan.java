@@ -3,19 +3,50 @@ package model;
 public class Putusan extends DataEntity implements Identifiable {
 
     private String nomorPerkara;
+    private String pengadilan;
+    private String tanggalPutusan;
     private String namaTerdakwa;
-    private String pasal;
-    private int tahun;
+    private int umurTerdakwa;
+    private String jenisKelamin;
+    private String pekerjaan;
     private String jenisNarkotika;
-    private String putusan;
+    private double beratBarangBukti;
+    private String pasalDilanggar;
+    private String peranTerdakwa;
+    private int vonisHukuman;
+    private double vonisDenda;
+    private String namaHakim;
 
-    public Putusan(String nomorPerkara, String namaTerdakwa, String pasal, int tahun, String jenisNarkotika, String putusan){
+    public Putusan(
+            String nomorPerkara,
+            String pengadilan,
+            String tanggalPutusan,
+            String namaTerdakwa,
+            int umurTerdakwa,
+            String jenisKelamin,
+            String pekerjaan,
+            String jenisNarkotika,
+            double beratBarangBukti,
+            String pasalDilanggar,
+            String peranTerdakwa,
+            int vonisHukuman,
+            double vonisDenda,
+            String namaHakim
+    ){
         this.nomorPerkara = nomorPerkara;
+        this.pengadilan = pengadilan;
+        this.tanggalPutusan = tanggalPutusan;
         this.namaTerdakwa = namaTerdakwa;
-        this.pasal = pasal;
-        this.tahun = tahun;
+        this.umurTerdakwa = umurTerdakwa;
+        this.jenisKelamin = jenisKelamin;
+        this.pekerjaan = pekerjaan;
         this.jenisNarkotika = jenisNarkotika;
-        this.putusan = putusan;
+        this.beratBarangBukti = beratBarangBukti;
+        this.pasalDilanggar = pasalDilanggar;
+        this.peranTerdakwa = peranTerdakwa;
+        this.vonisHukuman = vonisHukuman;
+        this.vonisDenda = vonisDenda;
+        this.namaHakim = namaHakim;
 
         touch();
     }
@@ -25,32 +56,56 @@ public class Putusan extends DataEntity implements Identifiable {
         return nomorPerkara;
     }
 
-    public String getNomorPerkara(){
+    public String getNomorPerkara() {
         return nomorPerkara;
     }
-    public String getNamaTerdakwa(){
+    public String getPengadilan() {
+        return pengadilan;
+    }
+    public String getTanggalPutusan() {
+        return tanggalPutusan;
+    }
+    public String getNamaTerdakwa() {
         return namaTerdakwa;
     }
-    public String getPasal(){
-        return pasal;
+    public int getUmurTerdakwa() {
+        return umurTerdakwa;
     }
-    public int getTahun(){
-        return tahun;
+    public String getJenisKelamin() {
+        return jenisKelamin;
     }
-    public String getJenisNarkotika(){
+    public String getPekerjaan() {
+        return pekerjaan;
+    }
+    public String getJenisNarkotika() {
         return jenisNarkotika;
     }
-    public String getPutusan(){
-        return putusan;
+    public double getBeratBarangBukti() {
+        return beratBarangBukti;
     }
+    public String getPasalDilanggar() {
+        return pasalDilanggar;
+    }
+    public String getPeranTerdakwa() {
+        return peranTerdakwa;
+    }
+    public int getVonisHukuman() {
+        return vonisHukuman;
+    }
+    public double getVonisDenda() {
+        return vonisDenda;
+    }
+    public String getNamaHakim() {
+        return namaHakim;
+    }
+
 
     @Override
     public String toString() {
         return nomorPerkara + " | " +
                 namaTerdakwa + " | " +
-                pasal + " | " +
                 jenisNarkotika + " | " +
-                tahun + " | " +
-                putusan;
+                vonisHukuman + " bulan | " +
+                pengadilan;
     }
 }
