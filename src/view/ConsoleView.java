@@ -31,6 +31,8 @@ public class ConsoleView {
         System.out.println("6. Hapus Putusan");
         System.out.println("0. Keluar");
 
+        System.out.println();
+
     }
 
 
@@ -47,6 +49,7 @@ public class ConsoleView {
         System.out.println("==================================================");
         System.out.println("               REPOSITORY PUTUSAN                 ");
         System.out.println("==================================================");
+        System.out.println();
 
         System.out.printf("%-4s %-15s %-20s %-15s %-10s %-15s%n",
                 "No",
@@ -63,10 +66,10 @@ public class ConsoleView {
     }
 
     public void tampilkanFooterRepository(int totalData) {
+        System.out.println();
         System.out.println("-----------------------------------------------------------------------------");
         System.out.println("Total Data : " + totalData);
         System.out.println();
-        System.out.println("[ DETAIL ]  [ HAPUS ]  [ REFRESH ]  [ KEMBALI ]");
     }
 
     public void tampilkanDetailPutusan(String nomor, String pengadilan, String tanggal, String nama, String umur, String jenisKelamin, String pekerjaan, String narkotika, String berat, String pasal, String peran, String vonis, String denda, String hakim) {
@@ -74,6 +77,7 @@ public class ConsoleView {
         System.out.println("==================================================");
         System.out.println("                 DETAIL PUTUSAN                   ");
         System.out.println("==================================================");
+        System.out.println();
 
         System.out.println("Nomor Putusan          : " + nomor);
         System.out.println("Pengadilan             : " + pengadilan);
@@ -96,7 +100,6 @@ public class ConsoleView {
         System.out.println("Nama Hakim             : " + hakim);
 
         System.out.println();
-        System.out.println("[ KEMBALI ]");
     }
 
     public void tampilkanFormCari() {
@@ -104,6 +107,7 @@ public class ConsoleView {
         System.out.println("==================================================");
         System.out.println("                 PENCARIAN PUTUSAN                ");
         System.out.println("==================================================");
+        System.out.println();
 
         System.out.println("1. Berdasarkan Nomor Perkara");
         System.out.println("2. Berdasarkan Nama Terdakwa");
@@ -112,22 +116,24 @@ public class ConsoleView {
     public void tampilkanHasilPencarian() {
         System.out.println();
         System.out.println("================== HASIL PENCARIAN =====================");
+        System.out.println();
     }
     public void tampilkanFormFilter() {
         System.out.println();
         System.out.println("==================================================");
         System.out.println("                  FILTER PUTUSAN                  ");
         System.out.println("==================================================");
+        System.out.println();
 
-        System.out.println("Jenis Narkotika        : ");
-        System.out.println("Pengadilan             : ");
-        System.out.println("Min Vonis              : ");
-        System.out.println("Max Vonis              : ");
+        System.out.println("1.Jenis Narkotika         ");
+        System.out.println("2.Pengadilan              ");
+        System.out.println("3.Rentang Vonis               ");
     }
 
     public void tampilkanHasilFilter() {
         System.out.println();
         System.out.println("================== HASIL FILTER =====================");
+        System.out.println();
     }
 
     public void tampilkanStatistik(int totalPutusan, double rataVonis, double rataDenda, String jenisTerbanyak) {
@@ -135,6 +141,7 @@ public class ConsoleView {
         System.out.println("==================================================");
         System.out.println("            STATISTIK PUTUSAN NARKOTIKA           ");
         System.out.println("==================================================");
+        System.out.println();
 
         System.out.println("Total Putusan          : " + totalPutusan);
         System.out.println("Rata-rata Vonis        : " + rataVonis + " Bulan");
@@ -142,7 +149,6 @@ public class ConsoleView {
         System.out.println("Jenis Terbanyak        : " + jenisTerbanyak);
 
         System.out.println();
-        System.out.println("[ KEMBALI ]");
     }
 
     public void tampilkanKonfirmasiHapus(String nomor, String nama) {
@@ -150,13 +156,15 @@ public class ConsoleView {
         System.out.println("==================================================");
         System.out.println("                  KONFIRMASI HAPUS                ");
         System.out.println("==================================================");
+        System.out.println();
 
         System.out.println("Nomor : " + nomor);
         System.out.println("Nama  : " + nama);
 
         System.out.println();
-        System.out.println("Yakin ingin menghapus data ini?");
-        System.out.println("[ YA ]    [ TIDAK ]");
+        System.out.println("Data putusan yang dipilih akan dihapus.");
+
+        System.out.println();
     }
 
     public void tampilkanKonfirmasiKeluar() {
@@ -164,9 +172,12 @@ public class ConsoleView {
         System.out.println("==================================================");
         System.out.println("                   KELUAR SISTEM                  ");
         System.out.println("==================================================");
+        System.out.println();
 
-        System.out.println("Apakah anda yakin ingin keluar?");
-        System.out.println("[ YA ]    [ TIDAK ]");
+        System.out.println("Anda akan mengakhiri sesi aplikasi.");
+
+
+        System.out.println();
     }
 
     public void tampilkanPesan(String pesan) {
@@ -182,6 +193,7 @@ public class ConsoleView {
     public void tekanEnter() {
         System.out.println();
         System.out.println("Tekan ENTER untuk kembali...");
+        System.out.println();
     }
 
 }
