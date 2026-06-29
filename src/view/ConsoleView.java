@@ -24,14 +24,13 @@ public class ConsoleView {
         System.out.println("==================================================");
 
         System.out.println("1. Tambah Putusan");
-        System.out.println("2. Tampilkan Semua");
+        System.out.println("2. Tampilkan Semua Putusan");
         System.out.println("3. Cari Putusan");
         System.out.println("4. Filter Putusan");
         System.out.println("5. Statistik");
         System.out.println("6. Hapus Putusan");
         System.out.println("0. Keluar");
 
-        System.out.println("\nPilih Menu: ");
     }
 
 
@@ -49,22 +48,22 @@ public class ConsoleView {
         System.out.println("               REPOSITORY PUTUSAN                 ");
         System.out.println("==================================================");
 
-        System.out.printf("%-4 %-15 %-20 %-15 %-10 %-15s%n",
+        System.out.printf("%-4s %-15s %-20s %-15s %-10s %-15s%n",
                 "No",
                 "Nomor",
                 "Terdakwa",
                 "Narkotika",
                 "Vonis", "Pengadilan");
 
-        System.out.println("------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------");
     }
 
     public void tampilkanDaftarPutusan (int no, String nomor, String nama, String narkotika, String vonis, String pengadilan) {
-        System.out.printf("%-4 %-15 %-20 %-15 %-10s %-15s%n", no, nomor, nama, narkotika, vonis, pengadilan);
+        System.out.printf("%-4d %-15s %-20s %-15s %-10s %-15s%n", no, nomor, nama, narkotika, vonis, pengadilan);
     }
 
     public void tampilkanFooterRepository(int totalData) {
-        System.out.println("----------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------");
         System.out.println("Total Data : " + totalData);
         System.out.println();
         System.out.println("[ DETAIL ]  [ HAPUS ]  [ REFRESH ]  [ KEMBALI ]");
@@ -108,8 +107,6 @@ public class ConsoleView {
 
         System.out.println("1. Berdasarkan Nomor Perkara");
         System.out.println("2. Berdasarkan Nama Terdakwa");
-
-        System.out.println("\nPilih : ");
     }
 
     public void tampilkanHasilPencarian() {
