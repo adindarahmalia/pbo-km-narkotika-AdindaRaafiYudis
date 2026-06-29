@@ -53,4 +53,7 @@ public class InputHandler {
             System.out.println("Pilihan harus antara " + min + " sampai" + max);
         }
     }
+    public void tekanEnter() {
+        scanner.nextLine();
+    }
 }

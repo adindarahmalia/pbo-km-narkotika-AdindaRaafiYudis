@@ -19,6 +19,12 @@ public class KnowledgeController {
     public void start() {
         int pilihan;
         do {
+            var data = repository.getDaftarSemua();
+            view.tampilkanDashboard(
+                    StatistikPutusan.totalPutusan(data),
+                    StatistikPutusan.rataRataVonis(data),
+                    StatistikPutusan.jenisNarkotikaTerbanyak(data));
+
             view.tampilkanMenu();
             pilihan = input.inputInt("Masukkan Pilihan: ");
             switch (pilihan) {
@@ -42,6 +48,12 @@ public class KnowledgeController {
                     break;
                 case 0:
                     view.tampilkanKonfirmasiKeluar();
+                    String konfirmasi = input.inputString("Apakah anda ingin keluar aplikasi? (Y/N): ");
+                    if (konfirmasi.equalsIgnoreCase("Y")) {
+                        pilihan = 0;
+                    } else {
+                        pilihan = -1;
+                    }
                     break;
                 default:
                     view.tampilkanError("Menu tidak tersedia");
@@ -73,6 +85,7 @@ public class KnowledgeController {
         Putusan data = new Putusan(nomorPerkara, pengadilan, tanggalPutusan, namaTerdakwa, umurTerdakwa, jenisKelamin, pekerjaan, jenisNarkotika, beratBarangBukti, pasalDilanggar, peranTerdakwa, vonisHukuman, vonisDenda, namaHakim);
         repository.simpan(data);
 
+        view.tampilkanPesan("Data berhasil disimpan ke repository.");
         view.tampilkanSukses("Data putusan berhasil ditambahkan");
     }
     private void tampilkanSemua() {
@@ -101,6 +114,8 @@ public class KnowledgeController {
         view.tampilkanFooterRepository(
                 repository.getTotalData()
         );
+        view.tekanEnter();
+        input.tekanEnter();
     }
     private void cariPutusan() {
 
@@ -115,6 +130,8 @@ public class KnowledgeController {
                 view.tampilkanError("Data tidak ditemukan");
                 return;
             }
+            view.tampilkanHasilPencarian();
+
             view.tampilkanDetailPutusan(
                     hasil.getNomorPerkara(),
                     hasil.getPengadilan(),
@@ -131,6 +148,8 @@ public class KnowledgeController {
                     String.valueOf(hasil.getVonisDenda()),
                     hasil.getNamaHakim()
             );
+            view.tekanEnter();
+            input.tekanEnter();
         } else if (pilihanCari == 2) {
             String nama = input.inputString("Nama Terdakwa: ");
             var hasil = repository.cariByNama(nama);
@@ -138,6 +157,7 @@ public class KnowledgeController {
                 view.tampilkanError("Data tidak ditemukan");
                 return;
             }
+            view.tampilkanHasilPencarian();
             view.tampilkanHeaderRepository();
 
             int no = 1;
@@ -152,6 +172,8 @@ public class KnowledgeController {
                 );
             }
             view.tampilkanFooterRepository(hasil.size());
+            view.tekanEnter();
+            input.tekanEnter();
         } else {
             view.tampilkanError("Pilihan tidak valid");
         }
@@ -184,6 +206,7 @@ public class KnowledgeController {
             view.tampilkanError("Data tidak ditemukan");
             return;
         }
+        view.tampilkanHasilFilter();
         view.tampilkanHeaderRepository();
         int no = 1;
 
@@ -198,6 +221,8 @@ public class KnowledgeController {
             );
         }
         view.tampilkanFooterRepository(hasil.size());
+        view.tekanEnter();
+        input.tekanEnter();
     }
     private void tampilkanStatistik() {
         var data = repository.getDaftarSemua();
@@ -206,14 +231,23 @@ public class KnowledgeController {
         double rataDenda = StatistikPutusan.rataRataDenda(data);
         String jenis = StatistikPutusan.jenisNarkotikaTerbanyak(data);
         view.tampilkanStatistik(total, rataVonis, rataDenda, jenis);
+        view.tekanEnter();
+        input.tekanEnter();
     }
     private void hapusPutusan() {
         String nomor = input.inputString("Masukkan Nomor Perkara yang akan dihapus: ");
-        boolean berhasil = repository.hapusByNomor(nomor);
-        if (berhasil) {
-            view.tampilkanSukses("Data berhasil dihapus");
-        } else {
+        Putusan data = repository.cariByNomor(nomor);
+
+        if (data == null) {
             view.tampilkanError("Data tidak ditemukan");
+            return;
         }
+        view.tampilkanKonfirmasiHapus(
+                data.getNomorPerkara(),
+                data.getNamaTerdakwa()
+        );
+        repository.hapusByNomor(nomor);
+
+        view.tampilkanSukses("Data berhasil dihapuss");
     }
 }
