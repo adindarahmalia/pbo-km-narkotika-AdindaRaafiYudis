@@ -76,68 +76,128 @@ public class KnowledgeController {
         view.tampilkanSukses("Data putusan berhasil ditambahkan");
     }
     private void tampilkanSemua() {
+
         if (repository.getDaftarSemua().isEmpty()) {
             view.tampilkanError("Belum ada data putusan");
             return;
         }
-        view.tampilkanPesan("=== DAFTAR PUTUSAN ===");
+
+        view.tampilkanHeaderRepository();
+
+        int no = 1;
+
         for (Putusan p : repository.getDaftarSemua()) {
-            System.out.println(p);
+
+            view.tampilkanDaftarPutusan(
+                    no++,
+                    p.getNomorPerkara(),
+                    p.getNamaTerdakwa(),
+                    p.getJenisNarkotika(),
+                    p.getVonisHukuman() + " Bulan",
+                    p.getPengadilan()
+            );
         }
+
+        view.tampilkanFooterRepository(
+                repository.getTotalData()
+        );
     }
     private void cariPutusan() {
+
         view.tampilkanFormCari();
         int pilihanCari = input.inputInt("Pilih: ");
+
         if (pilihanCari == 1) {
             String nomor = input.inputString("Nomor Perkara: ");
             Putusan hasil = repository.cariByNomor(nomor);
+
             if (hasil == null) {
                 view.tampilkanError("Data tidak ditemukan");
+                return;
             }
-            System.out.println(hasil);
+            view.tampilkanDetailPutusan(
+                    hasil.getNomorPerkara(),
+                    hasil.getPengadilan(),
+                    hasil.getTanggalPutusan(),
+                    hasil.getNamaTerdakwa(),
+                    String.valueOf(hasil.getUmurTerdakwa()),
+                    hasil.getJenisKelamin(),
+                    hasil.getPekerjaan(),
+                    hasil.getJenisNarkotika(),
+                    String.valueOf(hasil.getBeratBarangBukti()),
+                    hasil.getPasalDilanggar(),
+                    hasil.getPeranTerdakwa(),
+                    hasil.getVonisHukuman() + " Bulan",
+                    String.valueOf(hasil.getVonisDenda()),
+                    hasil.getNamaHakim()
+            );
         } else if (pilihanCari == 2) {
             String nama = input.inputString("Nama Terdakwa: ");
             var hasil = repository.cariByNama(nama);
             if (hasil.isEmpty()) {
-                view.tampilkanError("Data tidak didtemukan");
+                view.tampilkanError("Data tidak ditemukan");
                 return;
             }
+            view.tampilkanHeaderRepository();
+
+            int no = 1;
             for (Putusan p : hasil) {
-                System.out.println(p);
+                view.tampilkanDaftarPutusan(
+                        no++,
+                        p.getNomorPerkara(),
+                        p.getNamaTerdakwa(),
+                        p.getJenisNarkotika(),
+                        p.getVonisHukuman() + " Bulan",
+                        p.getPengadilan()
+                );
             }
+            view.tampilkanFooterRepository(hasil.size());
+        } else {
+            view.tampilkanError("Pilihan tidak valid");
         }
     }
     private void filterPutusan() {
-        System.out.println("1. Jenis Narkotika");
-        System.out.println("2. Pengadilan");
-        System.out.println("3. Rentang Vonis");
+        view.tampilkanFormFilter();
+
         int pilih = input.inputInt("Pilih: ");
+        var hasil = new java.util.ArrayList<Putusan>();
+
         switch (pilih) {
             case 1:
-                String jenis = input.inputString("Jenis Narkotika: ");
-                var hasilJenis = repository.filterByJenisNarkotika(jenis);
-                for (Putusan p : hasilJenis) {
-                    System.out.println(p);
-                }
+                String jenis = input.inputHuruf("Jenis Narkotika: ");
+                hasil.addAll(repository.filterByJenisNarkotika(jenis));
                 break;
             case 2:
-                String pengadilan = input.inputString("Pengadilan: ");
-                var hasilPengadilan = repository.filterByPengadilan(pengadilan);
-                for (Putusan p : hasilPengadilan) {
-                    System.out.println(p);
-                }
+                String pengadilan = input.inputHuruf("Pengadilan: ");
+                hasil.addAll(repository.filterByPengadilan(pengadilan));
                 break;
             case 3:
                 int min = input.inputInt("Min Vonis: ");
                 int max = input.inputInt("Max Vonis: ");
-                var hasilVonis = repository.filterByRentangVonis(min, max);
-                for (Putusan p : hasilVonis) {
-                    System.out.println(p);
-                }
+                hasil.addAll(repository.filterByRentangVonis(min, max));
                 break;
             default:
                 view.tampilkanError("Pilihan filter tidak valid");
+                return;
         }
+        if (hasil.isEmpty()) {
+            view.tampilkanError("Data tidak ditemukan");
+            return;
+        }
+        view.tampilkanHeaderRepository();
+        int no = 1;
+
+        for (Putusan p : hasil) {
+            view.tampilkanDaftarPutusan(
+                    no++,
+                    p.getNomorPerkara(),
+                    p.getNamaTerdakwa(),
+                    p.getJenisNarkotika(),
+                    p.getVonisHukuman() + " Bulan",
+                    p.getPengadilan()
+            );
+        }
+        view.tampilkanFooterRepository(hasil.size());
     }
     private void tampilkanStatistik() {
         var data = repository.getDaftarSemua();
