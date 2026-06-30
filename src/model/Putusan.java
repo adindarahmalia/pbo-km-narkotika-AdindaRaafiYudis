@@ -191,11 +191,20 @@ public class Putusan extends DataEntity implements Identifiable {
         touch();
     }
 
+    public String getKategoriHukuman() {
+        if (vonisHukuman <= 24) {
+            return "Ringan";
+        } else if (vonisHukuman <= 60) {
+            return "Sedang";
+        } else {
+            return "Berat";
+        }
+    }
+
 
     public void tampilkan() {
         System.out.println(toString());
     }
-
 
     public void tampilkan(boolean detail) {
         if (!detail) {
@@ -214,6 +223,7 @@ public class Putusan extends DataEntity implements Identifiable {
                         "Pasal Dilanggar    : " + pasalDilanggar + "\n" +
                         "Peran Terdakwa     : " + peranTerdakwa + "\n" +
                         "Vonis Hukuman      : " + vonisHukuman + " bulan\n" +
+                        "Kategori Hukuman   : " + getKategoriHukuman() + "\n" +
                         "Vonis Denda        : Rp" + vonisDenda + "\n" +
                         "Nama Hakim         : " + namaHakim
         );
@@ -225,6 +235,7 @@ public class Putusan extends DataEntity implements Identifiable {
                 namaTerdakwa + " | " +
                 jenisNarkotika + " | " +
                 vonisHukuman + " bulan | " +
+                getKategoriHukuman() + " | " +
                 pengadilan;
     }
 }
