@@ -7,6 +7,8 @@ public class Putusan extends DataEntity implements Identifiable {
     private String tanggalPutusan;
     private String namaTerdakwa;
     private int umurTerdakwa;
+    private String jenisKelamin;
+    private String pekerjaan;
     private String jenisNarkotika;
     private double beratBarangBukti;
     private String pasalDilanggar;
@@ -17,19 +19,19 @@ public class Putusan extends DataEntity implements Identifiable {
 
     private static int jumlahDibuat = 0;
 
-    // Constructor kosong
     public Putusan() {
         super();
         jumlahDibuat++;
     }
 
-    // Constructor lengkap
     public Putusan(
             String nomorPerkara,
             String pengadilan,
             String tanggalPutusan,
             String namaTerdakwa,
             int umurTerdakwa,
+            String jenisKelamin,
+            String pekerjaan,
             String jenisNarkotika,
             double beratBarangBukti,
             String pasalDilanggar,
@@ -44,6 +46,8 @@ public class Putusan extends DataEntity implements Identifiable {
         setTanggalPutusan(tanggalPutusan);
         setNamaTerdakwa(namaTerdakwa);
         setUmurTerdakwa(umurTerdakwa);
+        setJenisKelamin(jenisKelamin);
+        setPekerjaan(pekerjaan);
         setJenisNarkotika(jenisNarkotika);
         setBeratBarangBukti(beratBarangBukti);
         setPasalDilanggar(pasalDilanggar);
@@ -116,6 +120,24 @@ public class Putusan extends DataEntity implements Identifiable {
             throw new IllegalArgumentException("Umur terdakwa harus lebih dari 0.");
         }
         this.umurTerdakwa = umurTerdakwa;
+        touch();
+    }
+
+    public String getJenisKelamin() {
+        return jenisKelamin;
+    }
+
+    public void setJenisKelamin(String jenisKelamin) {
+        this.jenisKelamin = validasiString(jenisKelamin, "Jenis kelamin");
+        touch();
+    }
+
+    public String getPekerjaan() {
+        return pekerjaan;
+    }
+
+    public void setPekerjaan(String pekerjaan) {
+        this.pekerjaan = validasiString(pekerjaan, "Pekerjaan");
         touch();
     }
 
@@ -201,7 +223,6 @@ public class Putusan extends DataEntity implements Identifiable {
         }
     }
 
-
     public void tampilkan() {
         System.out.println(toString());
     }
@@ -218,6 +239,8 @@ public class Putusan extends DataEntity implements Identifiable {
                         "Tanggal Putusan    : " + tanggalPutusan + "\n" +
                         "Nama Terdakwa      : " + namaTerdakwa + "\n" +
                         "Umur Terdakwa      : " + umurTerdakwa + " tahun\n" +
+                        "Jenis Kelamin      : " + jenisKelamin + "\n" +
+                        "Pekerjaan          : " + pekerjaan + "\n" +
                         "Jenis Narkotika    : " + jenisNarkotika + "\n" +
                         "Berat Barang Bukti : " + beratBarangBukti + " gram\n" +
                         "Pasal Dilanggar    : " + pasalDilanggar + "\n" +
@@ -233,6 +256,8 @@ public class Putusan extends DataEntity implements Identifiable {
     public String toString() {
         return nomorPerkara + " | " +
                 namaTerdakwa + " | " +
+                jenisKelamin + " | " +
+                pekerjaan + " | " +
                 jenisNarkotika + " | " +
                 vonisHukuman + " bulan | " +
                 getKategoriHukuman() + " | " +
