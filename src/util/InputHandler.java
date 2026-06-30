@@ -18,7 +18,7 @@ public class InputHandler {
         while (true) {
             System.out.print(pesan);
             String input = scanner.nextLine().trim();
-            if (input.matches("[a-zA-Z\\s]+")) {
+            if (input.matches("[a-zA-Z\\s\\-\\.]+")) {
                 return input;
             }
             System.out.println("Input harus berupa huruf!");

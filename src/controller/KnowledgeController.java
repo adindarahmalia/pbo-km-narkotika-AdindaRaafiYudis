@@ -3,6 +3,7 @@ package controller;
 import model.KnowledgeRepository;
 import model.Putusan;
 import model.StatistikPutusan;
+import model.PutusanCsvLoader;
 import util.InputHandler;
 import view.ConsoleView;
 
@@ -13,6 +14,7 @@ public class KnowledgeController {
 
     public KnowledgeController() {
         repository = new KnowledgeRepository();
+        PutusanCsvLoader.loadFromCsv("data/putusan_narkotika.csv", repository);
         view = new ConsoleView();
         input = new InputHandler();
     }
@@ -66,21 +68,21 @@ public class KnowledgeController {
         String pengadilan = input.inputHuruf("Pengadilan: ");
         String tanggalPutusan = input.validasiString("Tanggal Putusan: ");
 
-        String namaTerdakwa = input.inputHuruf("Nama Terdakwa: ");
+        String namaTerdakwa = input.inputHuruf("\nNama Terdakwa: ");
         int umurTerdakwa = input.validasiInt("Umur Terdakwa: ");
         String jenisKelamin = input.inputHuruf("Jenis Kelamin: ");
         String pekerjaan = input.inputHuruf("Pekerjaan: ");
 
-        String jenisNarkotika = input.inputHuruf("Jenis Narkotika: ");
+        String jenisNarkotika = input.inputHuruf("\nJenis Narkotika: ");
         double beratBarangBukti = input.validasiDouble("Berat Barang Bukti: ");
 
-        String pasalDilanggar = input.validasiString("Pasal Dilanggar: ");
+        String pasalDilanggar = input.validasiString("\nPasal Dilanggar: ");
         String peranTerdakwa = input.inputHuruf("Peran Terdakwa: ");
 
-        int vonisHukuman = input.validasiInt("Vonis Hukuman (bulan): ");
+        int vonisHukuman = input.validasiInt("\nVonis Hukuman (bulan): ");
         double vonisDenda = input.validasiDouble("Vonis Denda: ");
 
-        String namaHakim = input.inputHuruf("Nama Hakim: ");
+        String namaHakim = input.inputHuruf("\nNama Hakim: ");
 
         Putusan data = new Putusan(nomorPerkara, pengadilan, tanggalPutusan, namaTerdakwa, umurTerdakwa, jenisKelamin, pekerjaan, jenisNarkotika, beratBarangBukti, pasalDilanggar, peranTerdakwa, vonisHukuman, vonisDenda, namaHakim);
         repository.simpan(data);
@@ -199,6 +201,7 @@ public class KnowledgeController {
         repository.hapusByNomor(nomor);
 
         view.tampilkanSukses("Data berhasil dihapus");
+        pause();
     }
     private void tampilkanTabel(java.util.List<Putusan> daftarPutusan) {
         view.tampilkanHeaderRepository();
