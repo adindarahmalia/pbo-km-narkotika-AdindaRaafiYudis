@@ -50,9 +50,22 @@ public class InputHandler {
             if (pilihan >= min && pilihan <= max) {
                 return pilihan;
             }
-            System.out.println("Pilihan harus antara " + min + " sampai" + max);
+            System.out.println("Pilihan harus antara " + min + " sampai " + max);
         }
     }
+    public String validasiString(String pesan) {
+        return inputString(pesan);
+    }
+    public int validasiInt(String pesan) {
+        return inputInt(pesan);
+    }
+    public double validasiDouble(String pesan) {
+        return inputDouble(pesan);
+    }
+    public int validasiPilihan(String pesan, int min, int max) {
+        return inputPilihan(pesan, min, max);
+    }
+
     public void tekanEnter() {
         scanner.nextLine();
     }

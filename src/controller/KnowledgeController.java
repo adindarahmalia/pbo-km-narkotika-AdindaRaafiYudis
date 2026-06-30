@@ -26,7 +26,7 @@ public class KnowledgeController {
                     StatistikPutusan.jenisNarkotikaTerbanyak(data));
 
             view.tampilkanMenu();
-            pilihan = input.inputInt("Masukkan Pilihan: ");
+            pilihan = input.validasiPilihan("Masukkan Pilihan: ", 0, 6);
             switch (pilihan) {
                 case 1:
                     tambahPutusan();
@@ -62,23 +62,23 @@ public class KnowledgeController {
     }
     private void tambahPutusan() {
         view.tampilkanFormTambah();
-        String nomorPerkara = input.inputString("Nomor Perkara: ");
+        String nomorPerkara = input.validasiString("Nomor Perkara: ");
         String pengadilan = input.inputHuruf("Pengadilan: ");
-        String tanggalPutusan = input.inputString("Tanggal Putusan: ");
+        String tanggalPutusan = input.validasiString("Tanggal Putusan: ");
 
         String namaTerdakwa = input.inputHuruf("Nama Terdakwa: ");
-        int umurTerdakwa = input.inputInt("Umur Terdakwa: ");
+        int umurTerdakwa = input.validasiInt("Umur Terdakwa: ");
         String jenisKelamin = input.inputHuruf("Jenis Kelamin: ");
         String pekerjaan = input.inputHuruf("Pekerjaan: ");
 
         String jenisNarkotika = input.inputHuruf("Jenis Narkotika: ");
-        double beratBarangBukti = input.inputDouble("Berat Barang Bukti: ");
+        double beratBarangBukti = input.validasiDouble("Berat Barang Bukti: ");
 
-        String pasalDilanggar = input.inputString("Pasal Dilanggar: ");
+        String pasalDilanggar = input.validasiString("Pasal Dilanggar: ");
         String peranTerdakwa = input.inputHuruf("Peran Terdakwa: ");
 
-        int vonisHukuman = input.inputInt("Vonis Hukuman (bulan): ");
-        double vonisDenda = input.inputDouble("Vonis Denda: ");
+        int vonisHukuman = input.validasiInt("Vonis Hukuman (bulan): ");
+        double vonisDenda = input.validasiDouble("Vonis Denda: ");
 
         String namaHakim = input.inputHuruf("Nama Hakim: ");
 
@@ -95,35 +95,17 @@ public class KnowledgeController {
             return;
         }
 
-        view.tampilkanHeaderRepository();
+        tampilkanTabel(repository.getDaftarSemua());
 
-        int no = 1;
-
-        for (Putusan p : repository.getDaftarSemua()) {
-
-            view.tampilkanDaftarPutusan(
-                    no++,
-                    p.getNomorPerkara(),
-                    p.getNamaTerdakwa(),
-                    p.getJenisNarkotika(),
-                    p.getVonisHukuman() + " Bulan",
-                    p.getPengadilan()
-            );
-        }
-
-        view.tampilkanFooterRepository(
-                repository.getTotalData()
-        );
-        view.tekanEnter();
-        input.tekanEnter();
+        pause();
     }
     private void cariPutusan() {
 
         view.tampilkanFormCari();
-        int pilihanCari = input.inputInt("Pilih: ");
+        int pilihanCari = input.validasiPilihan("Pilih: ", 1, 2);
 
         if (pilihanCari == 1) {
-            String nomor = input.inputString("Nomor Perkara: ");
+            String nomor = input.validasiString("Nomor Perkara: ");
             Putusan hasil = repository.cariByNomor(nomor);
 
             if (hasil == null) {
@@ -148,40 +130,25 @@ public class KnowledgeController {
                     String.valueOf(hasil.getVonisDenda()),
                     hasil.getNamaHakim()
             );
-            view.tekanEnter();
-            input.tekanEnter();
-        } else if (pilihanCari == 2) {
-            String nama = input.inputString("Nama Terdakwa: ");
+            pause();
+        } else {
+            String nama = input.validasiString("Nama Terdakwa: ");
             var hasil = repository.cariByNama(nama);
+
             if (hasil.isEmpty()) {
                 view.tampilkanError("Data tidak ditemukan");
                 return;
             }
             view.tampilkanHasilPencarian();
-            view.tampilkanHeaderRepository();
+            tampilkanTabel(hasil);
 
-            int no = 1;
-            for (Putusan p : hasil) {
-                view.tampilkanDaftarPutusan(
-                        no++,
-                        p.getNomorPerkara(),
-                        p.getNamaTerdakwa(),
-                        p.getJenisNarkotika(),
-                        p.getVonisHukuman() + " Bulan",
-                        p.getPengadilan()
-                );
-            }
-            view.tampilkanFooterRepository(hasil.size());
-            view.tekanEnter();
-            input.tekanEnter();
-        } else {
-            view.tampilkanError("Pilihan tidak valid");
+            pause();
         }
     }
     private void filterPutusan() {
         view.tampilkanFormFilter();
 
-        int pilih = input.inputInt("Pilih: ");
+        int pilih = input.validasiPilihan("Pilih: ", 1, 3);
         var hasil = new java.util.ArrayList<Putusan>();
 
         switch (pilih) {
@@ -194,35 +161,19 @@ public class KnowledgeController {
                 hasil.addAll(repository.filterByPengadilan(pengadilan));
                 break;
             case 3:
-                int min = input.inputInt("Min Vonis: ");
-                int max = input.inputInt("Max Vonis: ");
+                int min = input.validasiInt("Min Vonis: ");
+                int max = input.validasiInt("Max Vonis: ");
                 hasil.addAll(repository.filterByRentangVonis(min, max));
                 break;
-            default:
-                view.tampilkanError("Pilihan filter tidak valid");
-                return;
         }
         if (hasil.isEmpty()) {
             view.tampilkanError("Data tidak ditemukan");
             return;
         }
         view.tampilkanHasilFilter();
-        view.tampilkanHeaderRepository();
-        int no = 1;
+        tampilkanTabel(hasil);
 
-        for (Putusan p : hasil) {
-            view.tampilkanDaftarPutusan(
-                    no++,
-                    p.getNomorPerkara(),
-                    p.getNamaTerdakwa(),
-                    p.getJenisNarkotika(),
-                    p.getVonisHukuman() + " Bulan",
-                    p.getPengadilan()
-            );
-        }
-        view.tampilkanFooterRepository(hasil.size());
-        view.tekanEnter();
-        input.tekanEnter();
+        pause();
     }
     private void tampilkanStatistik() {
         var data = repository.getDaftarSemua();
@@ -231,8 +182,7 @@ public class KnowledgeController {
         double rataDenda = StatistikPutusan.rataRataDenda(data);
         String jenis = StatistikPutusan.jenisNarkotikaTerbanyak(data);
         view.tampilkanStatistik(total, rataVonis, rataDenda, jenis);
-        view.tekanEnter();
-        input.tekanEnter();
+        pause();
     }
     private void hapusPutusan() {
         String nomor = input.inputString("Masukkan Nomor Perkara yang akan dihapus: ");
@@ -248,6 +198,26 @@ public class KnowledgeController {
         );
         repository.hapusByNomor(nomor);
 
-        view.tampilkanSukses("Data berhasil dihapuss");
+        view.tampilkanSukses("Data berhasil dihapus");
+    }
+    private void tampilkanTabel(java.util.List<Putusan> daftarPutusan) {
+        view.tampilkanHeaderRepository();
+        int no = 1;
+
+        for(Putusan p : daftarPutusan) {
+            view.tampilkanDaftarPutusan(
+                    no++,
+                    p.getNomorPerkara(),
+                    p.getNamaTerdakwa(),
+                    p.getJenisNarkotika(),
+                    p.getVonisHukuman() + " Bulan",
+                    p.getPengadilan()
+            );
+        }
+        view.tampilkanFooterRepository(daftarPutusan.size());
+    }
+    private void pause() {
+        view.tekanEnter();
+        input.tekanEnter();
     }
 }
