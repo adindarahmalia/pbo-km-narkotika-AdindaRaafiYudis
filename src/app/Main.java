@@ -1,6 +1,6 @@
 package app;
 
-import controller.KnowledgeController;
+import model.KnowledgeRepository;
 import model.Putusan;
 import model.StatistikPutusan;
 
@@ -8,69 +8,116 @@ public class Main {
 
     public static void main(String[] args) {
 
-        KnowledgeController controller = new KnowledgeController();
+        KnowledgeRepository repo = new KnowledgeRepository();
 
         // =========================
-        // INPUT DATA VIA CONTROLLER
+        // DATA TEST SEMENTARA
         // =========================
-        controller.tambahPutusan(new Putusan(
-                "001",
-                "PN Jakarta",
+
+        repo.simpan(new Putusan(
+                "0001/Pid.Sus/2024/PN Sby",
+                "PN Surabaya",
                 "2024-01-10",
                 "Budi Santoso",
                 32,
-                "Laki-laki",
-                "Karyawan",
-                "Sabu",
+                "Sabu-sabu",
                 2.5,
-                "Pasal 112",
+                "Pasal 112 UU No. 35 Tahun 2009",
                 "Pengguna",
                 60,
                 500000000,
-                "Hakim A"
+                "Hakim Ketua A"
         ));
 
-        controller.tambahPutusan(new Putusan(
-                "002",
-                "PN Bandung",
-                "2024-02-12",
+        repo.simpan(new Putusan(
+                "0002/Pid.Sus/2024/PN Sby",
+                "PN Surabaya",
+                "2024-01-15",
                 "Andi Wijaya",
                 28,
-                "Laki-laki",
-                "Wiraswasta",
                 "Ganja",
-                1.2,
-                "Pasal 111",
-                "Pengedar",
+                5.0,
+                "Pasal 111 UU No. 35 Tahun 2009",
+                "Penyimpan",
                 36,
                 200000000,
-                "Hakim B"
+                "Hakim Ketua B"
+        ));
+
+        repo.simpan(new Putusan(
+                "0003/Pid.Sus/2024/PN Bdg",
+                "PN Bandung",
+                "2024-02-12",
+                "Rudi Hartono",
+                41,
+                "Sabu-sabu",
+                1.2,
+                "Pasal 114 UU No. 35 Tahun 2009",
+                "Kurir",
+                72,
+                800000000,
+                "Hakim Ketua C"
         ));
 
         // =========================
-        // TEST OUTPUT
+        // TEST REPOSITORY
         // =========================
 
         System.out.println("=== SEMUA DATA ===");
-        System.out.println(controller.getAll());
-
-        System.out.println("\n=== CARI ANDI ===");
-        System.out.println(controller.cari("Andi"));
-
-        System.out.println("\n=== FILTER SABU ===");
-        System.out.println(controller.filterJenis("Sabu"));
-
-        System.out.println("\n=== FILTER TAHUN 2024 ===");
-        System.out.println(controller.filterTahun(2024));
+        for (Putusan p : repo.getDaftarSemua()) {
+            System.out.println(p);
+        }
 
         System.out.println("\n=== TOTAL DATA ===");
-        System.out.println(controller.total());
+        System.out.println(repo.getTotalData());
+
+        System.out.println("\n=== CARI BY NOMOR ===");
+        System.out.println(repo.cariByNomor("0001/Pid.Sus/2024/PN Sby"));
+
+        System.out.println("\n=== CARI BY NAMA ===");
+        System.out.println(repo.cariByNama("Andi"));
+
+        System.out.println("\n=== FILTER JENIS SABU-SABU ===");
+        System.out.println(repo.filterByJenis("Sabu-sabu"));
+
+        System.out.println("\n=== FILTER PENGADILAN PN SURABAYA ===");
+        System.out.println(repo.filterByPengadilan("PN Surabaya"));
+
+        System.out.println("\n=== FILTER RENTANG VONIS 40 - 80 BULAN ===");
+        System.out.println(repo.filterByRentangVonis(40, 80));
 
         // =========================
-        // STATISTIK (DARI MODEL LANGSUNG)
+        // TEST STATISTIK
         // =========================
-        StatistikPutusan stat = new StatistikPutusan(controller.getAll());
 
-        stat.tampilkan();
+        System.out.println("\n=== STATISTIK PUTUSAN ===");
+
+        StatistikPutusan stat = new StatistikPutusan(repo.getDaftarSemua());
+
+        System.out.println("Total Putusan             : " + stat.getTotalPutusan());
+        System.out.println("Rata-rata Vonis           : " + stat.getRataRataVonis());
+        System.out.println("Rata-rata Denda           : " + stat.getRataRataDenda());
+        System.out.println("Jenis Narkotika Terbanyak : " + stat.getJenisNarkotikaTerbanyak());
+        System.out.println("Distribusi Peran          : " + stat.getDistribusiPeran());
+        System.out.println("Distribusi Jenis          : " + stat.getDistribusiJenisNarkotika());
+
+        // =========================
+        // TEST HAPUS DATA
+        // =========================
+
+        System.out.println("\n=== HAPUS DATA 0002 ===");
+        boolean berhasilHapus = repo.hapus("0002/Pid.Sus/2024/PN Sby");
+
+        System.out.println("Berhasil hapus: " + berhasilHapus);
+        System.out.println("Total setelah hapus: " + repo.getTotalData());
+
+        System.out.println("\n=== DATA SETELAH HAPUS ===");
+        for (Putusan p : repo.getDaftarSemua()) {
+            System.out.println(p);
+        }
+
+        System.out.println("\n=== STATISTIK SETELAH HAPUS ===");
+        StatistikPutusan statBaru = new StatistikPutusan(repo.getDaftarSemua());
+        statBaru.tampilkanLaporan();
     }
 }
