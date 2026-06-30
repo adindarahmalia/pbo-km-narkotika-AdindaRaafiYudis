@@ -1,7 +1,6 @@
 package model;
 
-public class Putusan {
-
+public class Putusan extends DataEntity implements Identifiable {
 
     private String nomorPerkara;
     private String pengadilan;
@@ -18,9 +17,12 @@ public class Putusan {
     private double vonisDenda;
     private String namaHakim;
 
-
     private static int jumlahDibuat = 0;
 
+    public Putusan() {
+        super();
+        jumlahDibuat++;
+    }
 
     public Putusan(
             String nomorPerkara,
@@ -38,113 +40,227 @@ public class Putusan {
             double vonisDenda,
             String namaHakim
     ) {
-        this.nomorPerkara = nomorPerkara;
-        this.pengadilan = pengadilan;
-        this.tanggalPutusan = tanggalPutusan;
-        this.namaTerdakwa = namaTerdakwa;
-        this.umurTerdakwa = umurTerdakwa;
-        this.jenisKelamin = jenisKelamin;
-        this.pekerjaan = pekerjaan;
-        this.jenisNarkotika = jenisNarkotika;
-        this.beratBarangBukti = beratBarangBukti;
-        this.pasalDilanggar = pasalDilanggar;
-        this.peranTerdakwa = peranTerdakwa;
-        this.vonisHukuman = vonisHukuman;
-        this.vonisDenda = vonisDenda;
-        this.namaHakim = namaHakim;
+        super();
+        setNomorPerkara(nomorPerkara);
+        setPengadilan(pengadilan);
+        setTanggalPutusan(tanggalPutusan);
+        setNamaTerdakwa(namaTerdakwa);
+        setUmurTerdakwa(umurTerdakwa);
+        setJenisKelamin(jenisKelamin);
+        setPekerjaan(pekerjaan);
+        setJenisNarkotika(jenisNarkotika);
+        setBeratBarangBukti(beratBarangBukti);
+        setPasalDilanggar(pasalDilanggar);
+        setPeranTerdakwa(peranTerdakwa);
+        setVonisHukuman(vonisHukuman);
+        setVonisDenda(vonisDenda);
+        setNamaHakim(namaHakim);
 
         jumlahDibuat++;
     }
 
+    private String validasiString(String nilai, String namaField) {
+        if (nilai == null || nilai.trim().isEmpty()) {
+            throw new IllegalArgumentException(namaField + " tidak boleh kosong.");
+        }
+        return nilai.trim();
+    }
+
+    @Override
+    public String getId() {
+        return nomorPerkara;
+    }
 
     public static int getJumlahDibuat() {
         return jumlahDibuat;
     }
 
-
-    public String getId() {
-        return nomorPerkara;
-    }
-
-
     public String getNomorPerkara() {
         return nomorPerkara;
     }
+
+    public void setNomorPerkara(String nomorPerkara) {
+        this.nomorPerkara = validasiString(nomorPerkara, "Nomor perkara");
+        touch();
+    }
+
     public String getPengadilan() {
         return pengadilan;
     }
+
+    public void setPengadilan(String pengadilan) {
+        this.pengadilan = validasiString(pengadilan, "Pengadilan");
+        touch();
+    }
+
     public String getTanggalPutusan() {
         return tanggalPutusan;
     }
+
+    public void setTanggalPutusan(String tanggalPutusan) {
+        this.tanggalPutusan = validasiString(tanggalPutusan, "Tanggal putusan");
+        touch();
+    }
+
     public String getNamaTerdakwa() {
         return namaTerdakwa;
     }
+
+    public void setNamaTerdakwa(String namaTerdakwa) {
+        this.namaTerdakwa = validasiString(namaTerdakwa, "Nama terdakwa");
+        touch();
+    }
+
     public int getUmurTerdakwa() {
         return umurTerdakwa;
     }
+
+    public void setUmurTerdakwa(int umurTerdakwa) {
+        if (umurTerdakwa <= 0) {
+            throw new IllegalArgumentException("Umur terdakwa harus lebih dari 0.");
+        }
+        this.umurTerdakwa = umurTerdakwa;
+        touch();
+    }
+
     public String getJenisKelamin() {
         return jenisKelamin;
     }
+
+    public void setJenisKelamin(String jenisKelamin) {
+        this.jenisKelamin = validasiString(jenisKelamin, "Jenis kelamin");
+        touch();
+    }
+
     public String getPekerjaan() {
         return pekerjaan;
     }
+
+    public void setPekerjaan(String pekerjaan) {
+        this.pekerjaan = validasiString(pekerjaan, "Pekerjaan");
+        touch();
+    }
+
     public String getJenisNarkotika() {
         return jenisNarkotika;
     }
+
+    public void setJenisNarkotika(String jenisNarkotika) {
+        this.jenisNarkotika = validasiString(jenisNarkotika, "Jenis narkotika");
+        touch();
+    }
+
     public double getBeratBarangBukti() {
         return beratBarangBukti;
     }
+
+    public void setBeratBarangBukti(double beratBarangBukti) {
+        if (beratBarangBukti <= 0) {
+            throw new IllegalArgumentException("Berat barang bukti harus lebih dari 0.");
+        }
+        this.beratBarangBukti = beratBarangBukti;
+        touch();
+    }
+
     public String getPasalDilanggar() {
         return pasalDilanggar;
     }
+
+    public void setPasalDilanggar(String pasalDilanggar) {
+        this.pasalDilanggar = validasiString(pasalDilanggar, "Pasal dilanggar");
+        touch();
+    }
+
     public String getPeranTerdakwa() {
         return peranTerdakwa;
     }
+
+    public void setPeranTerdakwa(String peranTerdakwa) {
+        this.peranTerdakwa = validasiString(peranTerdakwa, "Peran terdakwa");
+        touch();
+    }
+
     public int getVonisHukuman() {
         return vonisHukuman;
     }
+
+    public void setVonisHukuman(int vonisHukuman) {
+        if (vonisHukuman < 0) {
+            throw new IllegalArgumentException("Vonis hukuman tidak boleh negatif.");
+        }
+        this.vonisHukuman = vonisHukuman;
+        touch();
+    }
+
     public double getVonisDenda() {
         return vonisDenda;
     }
+
+    public void setVonisDenda(double vonisDenda) {
+        if (vonisDenda < 0) {
+            throw new IllegalArgumentException("Vonis denda tidak boleh negatif.");
+        }
+        this.vonisDenda = vonisDenda;
+        touch();
+    }
+
     public String getNamaHakim() {
         return namaHakim;
     }
 
+    public void setNamaHakim(String namaHakim) {
+        this.namaHakim = validasiString(namaHakim, "Nama hakim");
+        touch();
+    }
+
+    public String getKategoriHukuman() {
+        if (vonisHukuman <= 24) {
+            return "Ringan";
+        } else if (vonisHukuman <= 60) {
+            return "Sedang";
+        } else {
+            return "Berat";
+        }
+    }
 
     public void tampilkan() {
         System.out.println(toString());
     }
 
     public void tampilkan(boolean detail) {
-        if (detail) {
-            System.out.println(
-                    "Nomor: " + nomorPerkara + "\n" +
-                            "Pengadilan: " + pengadilan + "\n" +
-                            "Tanggal: " + tanggalPutusan + "\n" +
-                            "Terdakwa: " + namaTerdakwa + "\n" +
-                            "Umur: " + umurTerdakwa + "\n" +
-                            "Jenis Kelamin: " + jenisKelamin + "\n" +
-                            "Pekerjaan: " + pekerjaan + "\n" +
-                            "Narkotika: " + jenisNarkotika + "\n" +
-                            "Berat BB: " + beratBarangBukti + "\n" +
-                            "Pasal: " + pasalDilanggar + "\n" +
-                            "Peran: " + peranTerdakwa + "\n" +
-                            "Vonis: " + vonisHukuman + " bulan\n" +
-                            "Denda: " + vonisDenda + "\n" +
-                            "Hakim: " + namaHakim
-            );
-        } else {
+        if (!detail) {
             tampilkan();
+            return;
         }
-    }
 
+        System.out.println(
+                "Nomor Perkara      : " + nomorPerkara + "\n" +
+                        "Pengadilan         : " + pengadilan + "\n" +
+                        "Tanggal Putusan    : " + tanggalPutusan + "\n" +
+                        "Nama Terdakwa      : " + namaTerdakwa + "\n" +
+                        "Umur Terdakwa      : " + umurTerdakwa + " tahun\n" +
+                        "Jenis Kelamin      : " + jenisKelamin + "\n" +
+                        "Pekerjaan          : " + pekerjaan + "\n" +
+                        "Jenis Narkotika    : " + jenisNarkotika + "\n" +
+                        "Berat Barang Bukti : " + beratBarangBukti + " gram\n" +
+                        "Pasal Dilanggar    : " + pasalDilanggar + "\n" +
+                        "Peran Terdakwa     : " + peranTerdakwa + "\n" +
+                        "Vonis Hukuman      : " + vonisHukuman + " bulan\n" +
+                        "Kategori Hukuman   : " + getKategoriHukuman() + "\n" +
+                        "Vonis Denda        : Rp" + vonisDenda + "\n" +
+                        "Nama Hakim         : " + namaHakim
+        );
+    }
 
     @Override
     public String toString() {
         return nomorPerkara + " | " +
                 namaTerdakwa + " | " +
+                jenisKelamin + " | " +
+                pekerjaan + " | " +
                 jenisNarkotika + " | " +
-                vonisHukuman + " | " +
+                vonisHukuman + " bulan | " +
+                getKategoriHukuman() + " | " +
                 pengadilan;
     }
 }
