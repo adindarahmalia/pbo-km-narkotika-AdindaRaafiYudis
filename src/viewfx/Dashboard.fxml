@@ -15,7 +15,7 @@
 <?import com.sun.javafx.charts.Legend?>
 <BorderPane xmlns="https://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controller.DashboardController">
+            fx:controller="controllerfx.DashboardController">
 
     <top>
         <VBox spacing="5" alignment="CENTER"
