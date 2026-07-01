@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
+<?import javafx.scene.chart.BarChart?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controllerfx.RepositoryController">
@@ -87,6 +88,10 @@
                         text="Detail"
                         prefWidth="120"
                 onAction="#handleDetail"/>
+                <Button fx:id="btnHapus"
+                        text="Hapus"
+                        prefWidth="120"
+                        onAction="#handleHapus"/>
             </HBox>
         </VBox>
     </children>
