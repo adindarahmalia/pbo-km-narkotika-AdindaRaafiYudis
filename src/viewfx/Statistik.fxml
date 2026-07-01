@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.StatistikController">
+
+    <children>
+
+        <VBox spacing="25"
+              AnchorPane.topAnchor="20"
+              AnchorPane.leftAnchor="20"
+              AnchorPane.rightAnchor="20"
+              AnchorPane.bottomAnchor="20">
+
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Stastistik Putusan"
+                   style="-fx-font-size:30; -fx-font-weight:bold; -fx-text-fill:#1E3A8A;"/>
+
+            <HBox spacing="20">
+                <VBox prefWidth="220"
+                      prefHeight="120"
+                      alignment="CENTER"
+                      style="-fx-background-color:white; -fx-background-radius:15; -fx-border-radius:15; -fx-border-color:#DDDDDD;">
+
+                </VBox>
+            </HBox>
+        </VBox>
+    </children>
+
+</AnchorPane>
