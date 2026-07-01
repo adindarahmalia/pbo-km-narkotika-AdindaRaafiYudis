@@ -29,27 +29,25 @@ jobs:
         run: |
           echo "===== ROOT ====="
           ls -la
+
           echo ""
           echo "===== SRC ====="
           find src -type f
-
-      - name: Download JavaFX SDK
-        run: |
-          wget https://download2.gluonhq.com/openjfx/26/openjfx-26.0.1_linux-x64_bin-sdk.zip
-          unzip openjfx-26.0.1_linux-x64_bin-sdk.zip
 
       - name: Build Console MVC
         run: |
           mkdir -p out
 
           javac \
-          -encoding UTF-8 \
-          -d out \
-          $(find src/model -name "*.java") \
-          $(find src/util -name "*.java") \
-          $(find src/view -name "*.java") \
-          $(find src/controller -name "*.java") \
-          src/app/Main.java
+            -encoding UTF-8 \
+            -sourcepath src \
+            -d out \
+            src/app/Main.java
+
+      - name: Verify Build Output
+        run: |
+          echo "===== BUILD OUTPUT ====="
+          find out -type f
 
       - name: Build Success
-        run: echo "Build completed successfully."
+        run: echo "✅ Build completed successfully."
