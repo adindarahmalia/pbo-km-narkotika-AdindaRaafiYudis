@@ -8,6 +8,7 @@ import util.InputHandler;
 import util.ExportTxt;
 import view.ConsoleView;
 
+
 public class KnowledgeController {
     private KnowledgeRepository repository;
     private ConsoleView view;
@@ -29,7 +30,7 @@ public class KnowledgeController {
                     StatistikPutusan.jenisNarkotikaTerbanyak(data));
 
             view.tampilkanMenu();
-            pilihan = input.validasiPilihan("Masukkan Pilihan: ", 0, 7);
+            pilihan = input.validasiPilihan("Masukkan Pilihan: ", 0, 8);
             switch (pilihan) {
                 case 1:
                     tambahPutusan();
@@ -195,6 +196,7 @@ public class KnowledgeController {
         ExportTxt.exportStatistik(statistik);
         view.tampilkanSukses("Statistik berhasil diekspor ke output/statistik_putusan.txt");
     }
+
     private void hapusPutusan() {
         String nomor = input.inputString("Masukkan Nomor Perkara yang akan dihapus: ");
         Putusan data = repository.cariByNomor(nomor);
