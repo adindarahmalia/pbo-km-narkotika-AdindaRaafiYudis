@@ -28,6 +28,7 @@
                            prefWidth="450"/>
 
                 <Button fx:id="btnCari"
+                        onAction="#handleCari"
                         text="Cari"
                         prefWidth="120"/>
             </HBox>
@@ -78,10 +79,12 @@
 
                 <Button fx:id="btnRefresh"
                         text="Refresh"
-                        prefWidth="120"/>
+                        prefWidth="120"
+                onAction="#handleRefresh"/>
                 <Button fx:id="btnDetail"
                         text="Detail"
-                        prefWidth="120"/>
+                        prefWidth="120"
+                onAction="#handleDetail"/>
             </HBox>
         </VBox>
     </children>

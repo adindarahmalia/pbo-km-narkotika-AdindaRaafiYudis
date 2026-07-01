@@ -210,17 +210,20 @@
                 <Button fx:id="btnReset"
                         text="Reset"
                         prefWidth="130"
-                        prefHeight="40"/>
+                        prefHeight="40"
+                onAction="#handleReset"/>
 
                 <Button fx:id="btnKembali"
                         text="Kembali"
                         prefWidth="130"
-                        prefHeight="40"/>
+                        prefHeight="40"
+                onAction="#handleKembali"/>
 
                 <Button fx:id="btnSimpan"
                         text="Simpan"
                         prefWidth="150"
-                        prefHeight="45"/>
+                        prefHeight="45"
+                onAction="#handleSimpan"/>
             </HBox>
         </VBox>
     </VBox>
