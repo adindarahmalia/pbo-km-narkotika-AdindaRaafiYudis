@@ -5,6 +5,7 @@ import model.Putusan;
 import model.StatistikPutusan;
 import model.PutusanCsvLoader;
 import util.InputHandler;
+import util.ExportTxt;
 import view.ConsoleView;
 
 public class KnowledgeController {
@@ -28,7 +29,7 @@ public class KnowledgeController {
                     StatistikPutusan.jenisNarkotikaTerbanyak(data));
 
             view.tampilkanMenu();
-            pilihan = input.validasiPilihan("Masukkan Pilihan: ", 0, 6);
+            pilihan = input.validasiPilihan("Masukkan Pilihan: ", 0, 7);
             switch (pilihan) {
                 case 1:
                     tambahPutusan();
@@ -47,6 +48,9 @@ public class KnowledgeController {
                     break;
                 case 6:
                     hapusPutusan();
+                    break;
+                case 7:
+                    exportStatistik();
                     break;
                 case 0:
                     view.tampilkanKonfirmasiKeluar();
@@ -185,6 +189,11 @@ public class KnowledgeController {
         String jenis = StatistikPutusan.jenisNarkotikaTerbanyak(data);
         view.tampilkanStatistik(total, rataVonis, rataDenda, jenis);
         pause();
+    }
+    private void exportStatistik() {
+        StatistikPutusan statistik = new StatistikPutusan(repository.getDaftarSemua());
+        ExportTxt.exportStatistik(statistik);
+        view.tampilkanSukses("Statistik berhasil diekspor ke output/statistik_putusan.txt");
     }
     private void hapusPutusan() {
         String nomor = input.inputString("Masukkan Nomor Perkara yang akan dihapus: ");
