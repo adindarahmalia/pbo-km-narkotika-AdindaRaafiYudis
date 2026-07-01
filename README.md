@@ -16,4 +16,4 @@
 
 - feature/model
 - feature/src.view
-- feature/controllerfx
+- feature/controller
