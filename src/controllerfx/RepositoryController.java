@@ -4,12 +4,8 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 
 
 import model.KnowledgeRepository;
@@ -116,7 +112,64 @@ public class RepositoryController {
             data.setAll(repository.getDaftarSemua());
             return;
         }
-
         data.setAll(repository.filterByPengadilan(pengadilan));
+    }
+    @FXML
+    private void handleFilterJenis() {
+        String jenis = cbJenis.getValue();
+
+        if (jenis == null || jenis.equals("Semua")) {
+            data.setAll(repository.getDaftarSemua());
+            return;
+        }
+        data.setAll(repository.filterByJenisNarkotika(jenis));
+    }
+    @FXML
+    private void handleRefresh() {
+        txtSearch.clear();
+
+        cbPengadilan.getSelectionModel().select("Semua");
+        cbJenis.getSelectionModel().select("Semua");
+
+        data.setAll(repository.getDaftarSemua());
+    }
+    @FXML
+    private void handleDetail() {
+        Putusan putusan = tableRepository.getSelectionModel().getSelectedItem();
+
+        if(putusan == null) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Peringatan");
+            alert.setHeaderText(null);
+            alert.setContentText("Silahkan pilih data putusan terlebih dahulu");
+            alert.showAndWait();
+
+            return;
+        }
+        tampilkanDetail(putusan);
+    }
+    private void tampilkanDetail(Putusan p) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        alert.setTitle("Detail Putusan");
+        alert.setHeaderText("Nomor Perkara : " + p.getNomorPerkara());
+
+        alert.setContentText(
+                "Pengadilan : " + p.getPengadilan() + "\n\n" +
+                        "Tanggal Putusan : " + p.getTanggalPutusan() + "\n\n" +
+                        "Nama Terdakwa : " + p.getNamaTerdakwa() + "\n" +
+                        "Umur : " + p.getUmurTerdakwa() + "tahun\n" +
+                        "Jenis Kelamin : " + p.getJenisKelamin() + "\n" +
+                        "Pekerjaan : " + p.getPekerjaan() + "\n\n" +
+                        "Jenis Narkotika : " + p.getJenisNarkotika() + "\n" +
+                        "Berat Barang Bukti : " + p.getBeratBarangBukti() + "gram\n\n" +
+                        "Pasal : " + p.getPasalDilanggar() + "\n" +
+                        "Peran : " + p.getPeranTerdakwa() + "\n\n" +
+                        "Vonis : " + p.getVonisHukuman() + "bulan\n" +
+                        "Denda : " + p.getVonisDenda() + "\n\n" +
+                        "Hakim : " + p.getNamaHakim()
+        );
+        alert.showAndWait();
     }
 }
