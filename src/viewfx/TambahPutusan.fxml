@@ -16,15 +16,19 @@
             <content>
 
     <VBox spacing="25"
-          padding="25"
           style="-fx-background-color:#ECEFF1;">
+        <padding>
+            <Insets top="25" right="25" bottom="25" left="25"/>
+        </padding>
 
             <Label text="Tambah Data Putusan"
                    style="-fx-font-size:30; -fx-font-weight:bold; -fx-text-fill:#1E3A8A;"/>
 
         <VBox spacing="25"
-              padding="25"
               style="-fx-background-color:white; -fx-background-radius:15; -fx-border-radius: 15; -fx-border-color:#DDDDDD;">
+            <padding>
+                <Insets top="25" right="25" bottom="25" left="25"/>
+            </padding>
 
                 <Label text="DATA PERKARA"
                        style="-fx-font-size:20; -fx-font-weight:bold; -fx-text-fill:#1E3A8A;"/>
