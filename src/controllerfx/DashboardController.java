@@ -1,13 +1,48 @@
 package controllerfx;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.scene.Parent;
+import javafx.application.Platform;
 
 import model.KnowledgeRepository;
-import model.PutusanCsvLoader;
 import model.StatistikPutusan;
 
 public class DashboardController {
+    @FXML
+    private void handleDashboard() {
+
+    }
+
+    @FXML
+    private void handleRepository() {
+        bukaHalaman("Repository.fxml");
+    }
+
+    @FXML
+    private void handleTambahPutusan() {
+
+        System.out.println("Tambah Putusan ditekan");
+
+        bukaHalaman("TambahPutusan.fxml");
+    }
+
+    @FXML
+    private void handleStatistik() {
+        bukaHalaman("Statistik.fxml");
+    }
+
+    @FXML
+    private void handleKeluar() {
+        Platform.exit();
+
+    }
+
+    @FXML
+    private StackPane contentPane;
+
     @FXML
     private Label lblTotalPutusan;
 
@@ -27,5 +62,15 @@ public class DashboardController {
         lblRataVonis.setText(String.format("%.2f Bulan", StatistikPutusan.rataRataVonis(data)));
         lblJenisTerbanyak.setText(StatistikPutusan.jenisNarkotikaTerbanyak(data));
 
+    }
+    private void bukaHalaman(String namaFileFXML) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewfx/" + namaFileFXML));
+            Parent halaman = loader.load();
+            contentPane.getChildren().clear();
+            contentPane.getChildren().add(halaman);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
