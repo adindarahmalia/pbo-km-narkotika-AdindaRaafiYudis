@@ -12,6 +12,9 @@ import model.StatistikPutusan;
 
 public class DashboardController {
     @FXML
+    private void handleDashboard() {}
+
+    @FXML
     private void handleRepository() {
         bukaHalaman("Repository.fxml");
     }
