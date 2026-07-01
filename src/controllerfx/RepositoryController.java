@@ -9,11 +9,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
-import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.scene.control.ComboBox;
+
 
 import model.KnowledgeRepository;
 import model.Putusan;
-import model.PutusanCsvLoader;
+
 
 public class RepositoryController {
     @FXML
@@ -43,6 +44,12 @@ public class RepositoryController {
     @FXML
     private Button btnCari;
 
+    @FXML
+    private ComboBox<String> cbPengadilan;
+
+    @FXML
+    private ComboBox<String> cbJenis;
+
     private KnowledgeRepository repository;
     private ObservableList<Putusan> data;
 
@@ -61,5 +68,55 @@ public class RepositoryController {
 
         tableRepository.setItems(data);
 
+        cbPengadilan.setItems(FXCollections.observableArrayList(
+                "Semua",
+                "Pengadilan Negeri Malang",
+                "Pengadilan Negeri Surabaya",
+                "Pengadilan Negeri Jakarta Selatan",
+                "Pengadilan Negeri Bandung",
+                "Pengadilan Negeri Semarang"
+        ));
+
+        cbJenis.setItems(FXCollections.observableArrayList(
+                "Semua",
+                "Sabu-sabu",
+                "Ganja",
+                "Ekstasi",
+                "Heroin",
+                "Kokain"
+        ));
+
+        cbPengadilan.getSelectionModel().selectFirst();
+        cbJenis.getSelectionModel().selectFirst();
+
+    }
+    @FXML
+    private void handleCari() {
+        String keyword = txtSearch.getText().trim();
+
+        if (keyword.isEmpty()) {
+            data.setAll(repository.getDaftarSemua());
+            return;
+        }
+
+        Putusan hasilNomor = repository.cariByNomor(keyword);
+
+        if (hasilNomor != null) {
+            data.setAll(hasilNomor);
+            return;
+        }
+        data.setAll(repository.cariByNama(keyword));
+    }
+    @FXML
+    private void handleFilterPengadilan() {
+
+        String pengadilan = cbPengadilan.getValue();
+
+        if (pengadilan == null || pengadilan.equals("Semua")) {
+            data.setAll(repository.getDaftarSemua());
+            return;
+        }
+
+        data.setAll(repository.filterByPengadilan(pengadilan));
     }
 }

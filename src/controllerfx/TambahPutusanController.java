@@ -6,62 +6,33 @@ import javafx.scene.control.*;
 
 import model.KnowledgeRepository;
 import model.Putusan;
-import model.PutusanCsvLoader;
 
 public class TambahPutusanController {
 
     private KnowledgeRepository repository;
 
-    @FXML
-    private TextField txtNomorPerkara;
+    @FXML private TextField txtNomorPerkara;
+    @FXML private ComboBox<String> cbPengadilan;
+    @FXML private DatePicker dpTanggal;
 
-    @FXML
-    private ComboBox<String> cbPengadilan;
+    @FXML private TextField txtNama;
+    @FXML private TextField txtUmur;
+    @FXML private ComboBox<String> cbJenisKelamin;
+    @FXML private TextField txtPekerjaan;
 
-    @FXML
-    private DatePicker dpTanggal;
+    @FXML private ComboBox<String> cbJenis;
+    @FXML private TextField txtBerat;
 
-    @FXML
-    private TextField txtNama;
+    @FXML private TextField txtPasal;
+    @FXML private ComboBox<String> cbPeran;
 
-    @FXML
-    private TextField txtUmur;
+    @FXML private TextField txtVonis;
+    @FXML private TextField txtDenda;
+    @FXML private TextField txtHakim;
 
-    @FXML
-    private ComboBox<String> cbJenisKelamin;
-
-    @FXML
-    private TextField txtPekerjaan;
-
-    @FXML
-    private ComboBox<String> cbJenis;
-
-    @FXML
-    private TextField txtBerat;
-
-    @FXML
-    private TextField txtPasal;
-
-    @FXML
-    private ComboBox<String> cbPeran;
-
-    @FXML
-    private TextField txtVonis;
-
-    @FXML
-    private TextField txtDenda;
-
-    @FXML
-    private TextField txtHakim;
-
-    @FXML
-    private Button btnSimpan;
-
-    @FXML
-    private Button btnReset;
-
-    @FXML
-    private Button btnKembali;
+    @FXML private Button btnSimpan;
+    @FXML private Button btnReset;
+    @FXML private Button btnKembali;
 
     @FXML
     public void initialize() {
@@ -100,51 +71,124 @@ public class TambahPutusanController {
     @FXML
     private void handleSimpan() {
 
-        String nomorPerkara = txtNomorPerkara.getText();
-        String pengadilan = cbPengadilan.getValue();
-        String tanggal = dpTanggal.getValue().toString();
+        if (!validasiForm()) {
 
-        String nama = txtNama.getText();
-        int umur = Integer.parseInt(txtUmur.getText());
-        String jenisKelamin = cbJenisKelamin.getValue();
-        String pekerjaan = txtPekerjaan.getText();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Peringatan");
+            alert.setHeaderText(null);
+            alert.setContentText("Semua data harus diisi.");
 
-        String jenis = cbJenis.getValue();
-        double berat = Double.parseDouble(txtBerat.getText());
+            alert.showAndWait();
+            return;
+        }
+        try {
+            Putusan putusan = new Putusan(
+                    txtNomorPerkara.getText(),
+                    cbPengadilan.getValue(),
+                    dpTanggal.getValue().toString(),
+                    txtNama.getText(),
+                    Integer.parseInt(txtUmur.getText()),
+                    cbJenisKelamin.getValue(),
+                    txtPekerjaan.getText(),
+                    cbJenis.getValue(),
+                    Double.parseDouble(txtBerat.getText()),
+                    txtPasal.getText(),
+                    cbPeran.getValue(),
+                    Integer.parseInt(txtVonis.getText()),
+                    Double.parseDouble(txtDenda.getText()),
+                    txtHakim.getText()
+            );
 
-        String pasal = txtPasal.getText();
-        String peran = cbPeran.getValue();
+            repository.simpan(putusan);
 
-        int vonis = Integer.parseInt(txtVonis.getText());
-        double denda = Double.parseDouble(txtDenda.getText());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Berhasil");
+            alert.setHeaderText(null);
+            alert.setContentText("Data putusan berhasil disimpan.");
+            alert.showAndWait();
 
-        String hakim = txtHakim.getText();
+            resetForm();
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Input Salah");
+            alert.setHeaderText(null);
+            alert.setContentText("Umur, Berat, Vonis, dan Denda harus berupa angka.");
+            alert.showAndWait();
 
-        Putusan putusan = new Putusan(nomorPerkara, pengadilan, tanggal, nama, umur, jenisKelamin, pekerjaan, jenis, berat, pasal, peran, vonis, denda, hakim);
-        repository.simpan(putusan);
+        } catch (IllegalArgumentException e) {
 
-        System.out.println("Total data: " + repository.getTotalData());
-
-
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Data Tidak Valid");
+            alert.setHeaderText(null);
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
     }
+
+
+
     @FXML
     private void handleReset() {
-
+        resetForm();
     }
+
     @FXML
     private void handleKembali() {
 
+        // Akan dikerjakan pada tahap Navigasi
     }
-    @FXML
-    private void handleCari() {
 
+    private boolean validasiForm() {
+
+        if (txtNomorPerkara.getText().isBlank()) return false;
+        if (cbPengadilan.getValue() == null) return false;
+        if (dpTanggal.getValue() == null) return false;
+
+        if (txtNama.getText().isBlank()) return false;
+        if (txtUmur.getText().isBlank()) return false;
+        if (cbJenisKelamin.getValue() == null) return false;
+        if (txtPekerjaan.getText().isBlank()) return false;
+
+        if (cbJenis.getValue() == null) return false;
+        if (txtBerat.getText().isBlank()) return false;
+
+        if (txtPasal.getText().isBlank()) return false;
+        if (cbPeran.getValue() == null) return false;
+
+        if (txtVonis.getText().isBlank()) return false;
+        if (txtDenda.getText().isBlank()) return false;
+        if (txtHakim.getText().isBlank()) return false;
+
+        return true;
     }
-    @FXML
-    private void handleRefresh() {
 
-    }
-    @FXML
-    private void handleDetail() {
+    private void resetForm() {
 
+        txtNomorPerkara.clear();
+
+        cbPengadilan.getSelectionModel().clearSelection();
+
+        dpTanggal.setValue(null);
+
+        txtNama.clear();
+        txtUmur.clear();
+
+        cbJenisKelamin.getSelectionModel().clearSelection();
+
+        txtPekerjaan.clear();
+
+        cbJenis.getSelectionModel().clearSelection();
+
+        txtBerat.clear();
+
+        txtPasal.clear();
+
+        cbPeran.getSelectionModel().clearSelection();
+
+        txtVonis.clear();
+
+        txtDenda.clear();
+
+        txtHakim.clear();
     }
 }
