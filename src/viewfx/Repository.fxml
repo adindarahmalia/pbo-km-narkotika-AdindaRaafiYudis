@@ -52,17 +52,23 @@
                        prefHeight="450">
 
                 <columns>
-                    <TableColumn text="No"
+                    <TableColumn fx:id="colNo"
+                            text="No"
                                  prefWidth="60"/>
-                    <TableColumn text="Nomor Perkara"
+                    <TableColumn fx:id="colNomorPerkara"
+                            text="Nomor Perkara"
                                  prefWidth="220"/>
-                    <TableColumn text="Nama Terdakwa"
+                    <TableColumn fx:id="colNamaTerdakwa"
+                            text="Nama Terdakwa"
                                  prefWidth="280"/>
-                    <TableColumn text="Jenis"
+                    <TableColumn fx:id="colJenis"
+                            text="Jenis"
                                  prefWidth="150"/>
-                    <TableColumn text="Vonis"
+                    <TableColumn fx:id="colVonis"
+                            text="Vonis"
                                  prefWidth="120"/>
-                    <TableColumn text="Pengadilan"
+                    <TableColumn fx:id="colPengadilan"
+                            text="Pengadilan"
                                  prefWidth="220"/>
                 </columns>
             </TableView>

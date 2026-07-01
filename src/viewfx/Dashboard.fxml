@@ -87,7 +87,8 @@
                                 <Label text="TOTAL PUTUSAN"
                                        style="-fx-font-size:18; -fx-font-weight:bold; -fx-text-fill:#666666;"/>
 
-                                <Label text="300"
+                                <Label  fx:id="lblTotalPutusan"
+                                        text="300"
                                        style="-fx-font-size:42; -fx-font-weight:bold; -fx-text-fill:#1E3A8A;"/>
                             </children>
                         </VBox>
@@ -102,7 +103,8 @@
                                     <Label text="RATA-RATA VONIS"
                                            style="-fx-font-size:18; -fx-font-weight:bold; -fx-text-fill:#666666;"/>
 
-                                    <Label text="38 Bulan"
+                                    <Label  fx:id="lblRataVonis"
+                                            text="38 Bulan"
                                            style="-fx-font-size:42; -fx-font-weight:bold; -fx-text-fill:#1E3A8A;"/>
                                 </children>
                         </VBox>
@@ -117,7 +119,8 @@
                                     <Label text="JENIS TERBANYAK"
                                            style="-fx-font-size:18; -fx-font-weight:bold; -fx-text-fill:#666666;"/>
 
-                                    <Label text="Sabu-Sabu"
+                                    <Label  fx:id="lblJenisTerbanyak"
+                                            text="Sabu-Sabu"
                                            style="-fx-font-size:42; -fx-font-weight:bold; -fx-text-fill:#1E3A8A;"/>
                                 </children>
                         </VBox>
