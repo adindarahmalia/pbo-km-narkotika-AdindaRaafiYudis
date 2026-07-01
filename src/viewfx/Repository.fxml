@@ -38,7 +38,8 @@
                     <Label text="Filter Pengadilan"/>
 
                     <ComboBox fx:id="cbPengadilan"
-                              prefWidth="220"/>
+                              prefWidth="220"
+                    onAction="#handleFilterPengadilan"/>
                 </VBox>
 
                 <VBox spacing="5">
