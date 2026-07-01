@@ -6,7 +6,9 @@ import model.StatistikPutusan;
 import model.PutusanCsvLoader;
 import util.InputHandler;
 import util.ExportTxt;
+import util.PutusanComparator;
 import view.ConsoleView;
+import java.util.ArrayList;
 
 
 public class KnowledgeController {
@@ -52,6 +54,9 @@ public class KnowledgeController {
                     break;
                 case 7:
                     exportStatistik();
+                    break;
+                case 8:
+                    sortingPutusan();
                     break;
                 case 0:
                     view.tampilkanKonfirmasiKeluar();
@@ -195,6 +200,42 @@ public class KnowledgeController {
         StatistikPutusan statistik = new StatistikPutusan(repository.getDaftarSemua());
         ExportTxt.exportStatistik(statistik);
         view.tampilkanSukses("Statistik berhasil diekspor ke output/statistik_putusan.txt");
+    }
+    private void sortingPutusan() {
+
+        ArrayList<Putusan> data = new ArrayList<>(repository.getDaftarSemua());
+
+        view.tampilkanMenuSorting();
+
+        int pilihan = input.validasiPilihan("Pilih metode sorting: ", 0, 4);
+
+        switch (pilihan) {
+
+            case 1:
+                data.sort(PutusanComparator.byNomorPerkara());
+                break;
+
+            case 2:
+                data.sort(PutusanComparator.byNamaTerdakwa());
+                break;
+
+            case 3:
+                data.sort(PutusanComparator.byVonis());
+                break;
+
+            case 4:
+                data.sort(PutusanComparator.byTanggalPutusan());
+                break;
+
+            case 0:
+                return;
+        }
+
+        view.tampilkanPesan("Hasil Sorting");
+
+        tampilkanTabel(data);
+
+        pause();
     }
 
     private void hapusPutusan() {
