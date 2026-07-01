@@ -8,15 +8,16 @@ import javafx.stage.Stage;
 public class MainApp extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(
                 getClass().getResource("Dashboard.fxml")
         );
 
         Scene scene = new Scene(loader.load(), 1300, 760);
-        stage.setTitle("KMS Putusan Pengadilan Narkotika");
-        stage.setScene(scene);
-        stage.show();
+        primaryStage.setTitle("KMS Putusan Pengadilan Narkotika");
+        primaryStage.setScene(scene);
+        primaryStage.setMaximized(true);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
