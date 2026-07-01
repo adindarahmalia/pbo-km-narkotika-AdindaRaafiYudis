@@ -191,6 +191,16 @@ public class RepositoryController {
         konfirmasi.setHeaderText(null);
         konfirmasi.setContentText("Apakah anda yakin ingin menghapus data ini?");
 
-        konfirmasi.showAndWait();
+        if(konfirmasi.showAndWait().get() == ButtonType.OK) {
+            repository.hapus(putusan.getNomorPerkara());
+
+            data.setAll(repository.getDaftarSemua());
+
+            Alert sukses = new Alert(Alert.AlertType.INFORMATION);
+            sukses.setTitle("Berhasil");
+            sukses.setHeaderText(null);
+            sukses.setContentText("Data putusan berhasil dihapus.");
+            sukses.showAndWait();
+        }
     }
 }
