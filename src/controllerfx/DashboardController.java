@@ -1,4 +1,4 @@
-package controller;
+package controllerfx;
 
 public class DashboardController {
 }

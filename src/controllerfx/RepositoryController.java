@@ -1,8 +1,8 @@
-package controller;
+package controllerfx;
 
 import javafx.fxml.FXML;
 
-public class StatistikController {
+public class RepositoryController {
 
     @FXML
     public void initialize() {
