@@ -23,9 +23,6 @@ public class DashboardController {
 
     @FXML
     private void handleTambahPutusan() {
-
-        System.out.println("Tambah Putusan ditekan");
-
         bukaHalaman("TambahPutusan.fxml");
     }
 
@@ -57,11 +54,13 @@ public class DashboardController {
     @FXML
     public void initialize() {
         repository = SharedRepository.getRepository();
+        refreshDashboard();
+    }
+    public void refreshDashboard() {
         var data = repository.getDaftarSemua();
         lblTotalPutusan.setText(String.valueOf(StatistikPutusan.totalPutusan(data)));
         lblRataVonis.setText(String.format("%.2f Bulan", StatistikPutusan.rataRataVonis(data)));
         lblJenisTerbanyak.setText(StatistikPutusan.jenisNarkotikaTerbanyak(data));
-
     }
     private void bukaHalaman(String namaFileFXML) {
         try {
