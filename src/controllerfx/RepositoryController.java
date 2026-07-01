@@ -172,4 +172,25 @@ public class RepositoryController {
         );
         alert.showAndWait();
     }
+    @FXML
+    private void handleHapus() {
+        Putusan putusan = tableRepository.getSelectionModel().getSelectedItem();
+
+        if(putusan == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Peringatan");
+            alert.setHeaderText(null);
+            alert.setContentText("Silahkan pilih data putusan yang akan dihapus.");
+            alert.showAndWait();
+
+            return;
+        }
+
+        Alert konfirmasi = new Alert(Alert.AlertType.CONFIRMATION);
+        konfirmasi.setTitle("Konfirmasi");
+        konfirmasi.setHeaderText(null);
+        konfirmasi.setContentText("Apakah anda yakin ingin menghapus data ini?");
+
+        konfirmasi.showAndWait();
+    }
 }
