@@ -21,12 +21,7 @@ public class DashboardController {
 
     @FXML
     public void initialize() {
-        repository = new KnowledgeRepository();
-
-        PutusanCsvLoader.loadFromCsv(
-                "data/putusan_narkotika.csv",
-                repository
-        );
+        repository = SharedRepository.getRepository();
         var data = repository.getDaftarSemua();
         lblTotalPutusan.setText(String.valueOf(StatistikPutusan.totalPutusan(data)));
         lblRataVonis.setText(String.format("%.2f Bulan", StatistikPutusan.rataRataVonis(data)));
