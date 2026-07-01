@@ -125,17 +125,9 @@ public class TambahPutusanController {
         }
     }
 
-
-
     @FXML
     private void handleReset() {
         resetForm();
-    }
-
-    @FXML
-    private void handleKembali() {
-
-        // Akan dikerjakan pada tahap Navigasi
     }
 
     private boolean validasiForm() {

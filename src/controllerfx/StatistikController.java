@@ -49,6 +49,7 @@ public class StatistikController {
                     )
             );
         }
+        barChart.getData().add(series);
 
         String ringkasan =
                 "=== RINGKASAN STATISTIK ===\n\n" +
