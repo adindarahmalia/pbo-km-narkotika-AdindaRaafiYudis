@@ -29,6 +29,7 @@ public class ConsoleView {
         System.out.println("4. Filter Putusan");
         System.out.println("5. Statistik");
         System.out.println("6. Hapus Putusan");
+        System.out.println("7. Export Statistik");
         System.out.println("0. Keluar");
 
         System.out.println();

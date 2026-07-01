@@ -42,7 +42,7 @@
                            GridPane.rowIndex="0"
                            GridPane.columnIndex="1"/>
 
-                <Label text="Nomor Perkara"
+                <Label text="Pengadilan"
                        GridPane.rowIndex="1"
                        GridPane.columnIndex="0"/>
 
@@ -180,6 +180,7 @@
 
                 <TextField fx:id="txtVonis"
                            prefWidth="420"
+                           promptText="Masukkan Lama Vonis (bulan)"
                            GridPane.rowIndex="0"
                            GridPane.columnIndex="1"/>
 
