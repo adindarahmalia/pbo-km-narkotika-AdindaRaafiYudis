@@ -19,3 +19,54 @@
     -fx-background-color: #0F172A;
 }
 
+.text-field{
+    -fx-background-radius:8;
+    -fx-border-radius:8;
+    -fx-border-color:#D0D0D0;
+    -fx-background-color:white;
+    -fx-padding:8;
+}
+
+.text-field:focused{
+    -fx-border-color:#2563EB;
+}
+
+.combo-box{
+    -fx-background-radius:8;
+    -fx-border-radius:8;
+}
+
+.date-picker{
+    -fx-background-radius:8;
+}
+
+.table-view{
+    -fx-background-radius:10;
+    -fx-border-radius:10;
+    -fx-border-color: #DADADA;
+}
+.table-view .column-header{
+    -fx-background-color:#1E3A8A;
+}
+.table-view .column-header .label{
+    -fx-text-fill:white;
+    -fx-font-weight:bold;
+}
+
+.card{
+    -fx-background-color:white;
+    -fx-background-radius:15;
+    -fx-border-radius:15;
+    -fx-border-color:#DDDDDD;
+    -fx-padding:20;
+}
+
+.label{
+    -fx-text-fill:#263238;
+}
+
+.title{
+    -fx-font-size:28;
+    -fx-font-weight:bold;
+    -fx-text-fill:#1E3A8A;
+}
