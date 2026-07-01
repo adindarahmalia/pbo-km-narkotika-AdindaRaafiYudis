@@ -30,6 +30,7 @@ public class ConsoleView {
         System.out.println("5. Statistik");
         System.out.println("6. Hapus Putusan");
         System.out.println("7. Export Statistik");
+        System.out.println("8. Sorting");
         System.out.println("0. Keluar");
 
         System.out.println();
@@ -150,6 +151,18 @@ public class ConsoleView {
         System.out.println("Jenis Terbanyak        : " + jenisTerbanyak);
 
         System.out.println();
+    }
+    public void tampilkanMenuSorting() {
+        System.out.println();
+        System.out.println("==================================================");
+        System.out.println("                 SORTING PUTUSAN               ");
+        System.out.println("==================================================");
+        System.out.println("1. Nomor Perkara");
+        System.out.println("2. Nama Terdakwa");
+        System.out.println("3. Vonis Hukuman");
+        System.out.println("4. Tanggal Putusan");
+        System.out.println("0. Kembali");
+        System.out.println("==================================================");
     }
 
     public void tampilkanKonfirmasiHapus(String nomor, String nama) {

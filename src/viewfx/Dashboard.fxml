@@ -65,6 +65,7 @@
 
     <center>
 
+        <StackPane fx:id="contentPane">
         <VBox spacing="30"
               style="-fx-background-color:#ECEFF1; -fx-padding:35">
 
@@ -124,5 +125,6 @@
                 </HBox>
             </children>
         </VBox>
+        </StackPane>
     </center>
 </BorderPane>
