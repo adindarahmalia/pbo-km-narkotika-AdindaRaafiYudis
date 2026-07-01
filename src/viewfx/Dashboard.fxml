@@ -39,25 +39,30 @@
             <children>
                 <Button text="🏠 Dashboard"
                         prefWidth="180"
-                        prefHeight="40"/>
+                        prefHeight="40"
+                onAction="#handleDashboard"/>
 
                 <Button text="📂 Repository"
                         prefWidth="180"
-                        prefHeight="40"/>
+                        prefHeight="40"
+                        onAction="#handleRepository"/>
 
                 <Button text="➕ Tambah Putusan"
                         prefWidth="180"
-                        prefHeight="40"/>
+                        prefHeight="40"
+                        onAction="#handleTambahPutusan"/>
 
                 <Button text="📊 Statistik"
                         prefWidth="180"
-                        prefHeight="40"/>
+                        prefHeight="40"
+                        onAction="#handleStatistik"/>
 
                 <Region VBox.vgrow="ALWAYS"/>
 
                 <Button text="🚪 Keluar"
                         prefWidth="180"
-                        prefHeight="40"/>
+                        prefHeight="40"
+                        onAction="#handleKeluar"/>
             </children>
         </VBox>
     </left>
