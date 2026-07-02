@@ -4,12 +4,14 @@ import model.KnowledgeRepository;
 import model.Putusan;
 import model.StatistikPutusan;
 import model.PutusanCsvLoader;
+
 import util.InputHandler;
 import util.ExportTxt;
 import util.PutusanComparator;
 import view.ConsoleView;
 import java.util.ArrayList;
 
+import java.util.List;
 
 public class KnowledgeController {
     private KnowledgeRepository repository;
