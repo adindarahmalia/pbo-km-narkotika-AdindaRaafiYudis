@@ -1,4 +1,5 @@
 package app;
+
 import controller.KnowledgeController;
 
 public class Main {
