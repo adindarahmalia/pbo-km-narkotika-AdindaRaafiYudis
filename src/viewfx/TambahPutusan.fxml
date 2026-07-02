@@ -9,13 +9,20 @@
             fx:controller="controllerfx.TambahPutusanController">
     <children>
         <ScrollPane fitToWidth="true"
-                    prefWidth="950"
-                    prefHeight="720"
+                    fitToHeight="true"
+                    pannable="true"
+                    AnchorPane.topAnchor="0"
+                    AnchorPane.bottomAnchor="0"
+                    AnchorPane.leftAnchor="0"
+                    AnchorPane.rightAnchor="0"
                     style="-fx-background:#ECEFF1;">
 
             <content>
 
     <VBox spacing="25"
+          fillWidth="true"
+          maxWidth="Infinity"
+          VBox.vgrow="ALWAYS"
           style="-fx-background-color:#ECEFF1;">
         <padding>
             <Insets top="25" right="25" bottom="25" left="25"/>
@@ -26,6 +33,7 @@
 
         <VBox spacing="25"
               fillWidth="true"
+              maxWidth="Infinity"
               style="-fx-background-color:white; -fx-background-radius:15; -fx-border-radius: 15; -fx-border-color:#DDDDDD;">
             <padding>
                 <Insets top="25" right="25" bottom="25" left="25"/>
@@ -38,7 +46,7 @@
                       vgap="18">
                 <columnConstraints>
                     <ColumnConstraints minWidth="170"
-                                       prefWidth="180"/>
+                                       prefWidth="220"/>
 
                     <ColumnConstraints hgrow="ALWAYS"/>
                 </columnConstraints>
@@ -51,6 +59,7 @@
                            promptText="Masukkan Nomor Perkara"
                            maxWidth="Infinity"
                            GridPane.rowIndex="0"
+                           GridPane.hgrow="ALWAYS"
                            GridPane.columnIndex="1"/>
 
                 <Label text="Pengadilan"
@@ -95,6 +104,7 @@
                            maxWidth="Infinity"
                            promptText="Masukkan Nama"
                            GridPane.rowIndex="0"
+                           GridPane.hgrow="ALWAYS"
                            GridPane.columnIndex="1"/>
 
                 <Label text="Umur"
@@ -105,6 +115,7 @@
                            maxWidth="Infinity"
                            promptText="Umur"
                            GridPane.rowIndex="1"
+                           GridPane.hgrow="ALWAYS"
                            GridPane.columnIndex="1"/>
 
                 <Label text="Jenis Kelamin"
@@ -125,6 +136,7 @@
                            maxWidth="Infinity"
                            promptText="Masukkan Pekerjaan"
                            GridPane.rowIndex="3"
+                           GridPane.hgrow="ALWAYS"
                            GridPane.columnIndex="1"/>
 
             </GridPane>
@@ -160,6 +172,7 @@
                            maxWidth="Infinity"
                            promptText="0.0"
                            GridPane.rowIndex="1"
+                           GridPane.hgrow="ALWAYS"
                            GridPane.columnIndex="1"/>
             </GridPane>
             <Separator/>
@@ -183,6 +196,7 @@
                 <TextField fx:id="txtPasal"
                            maxWidth="Infinity"
                            GridPane.rowIndex="0"
+                           GridPane.hgrow="ALWAYS"
                            GridPane.columnIndex="1"/>
 
                 <Label text="Peran Terdakwa"
@@ -217,6 +231,7 @@
                            maxWidth="Infinity"
                            promptText="Masukkan Lama Vonis (bulan)"
                            GridPane.rowIndex="0"
+                           GridPane.hgrow="ALWAYS"
                            GridPane.columnIndex="1"/>
 
                 <Label text="Vonis Denda"
@@ -226,6 +241,7 @@
                 <TextField fx:id="txtDenda"
                            maxWidth="Infinity"
                            GridPane.rowIndex="1"
+                           GridPane.hgrow="ALWAYS"
                            GridPane.columnIndex="1"/>
 
                 <Label text="Nama Hakim"
@@ -235,6 +251,7 @@
                 <TextField fx:id="txtHakim"
                            maxWidth="Infinity"
                            GridPane.rowIndex="2"
+                           GridPane.hgrow="ALWAYS"
                            GridPane.columnIndex="1"/>
             </GridPane>
             <Separator/>
