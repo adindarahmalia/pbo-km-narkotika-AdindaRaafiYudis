@@ -6,6 +6,7 @@ import java.util.List;
 public class KnowledgeRepository {
 
     private List<Putusan> daftarPutusan = new ArrayList<>();
+    private List<Putusan> daftarBonus = new ArrayList<>();
 
 
 
@@ -14,6 +15,13 @@ public class KnowledgeRepository {
             throw new IllegalArgumentException("Data putusan tidak boleh null.");
         }
         daftarPutusan.add(p);
+    }
+
+    public void simpanBonus(Putusan p) {
+        if (p == null) {
+            throw new IllegalArgumentException("Data bonus tidak boleh null.");
+        }
+        daftarBonus.add(p);
     }
 
 
@@ -40,6 +48,28 @@ public class KnowledgeRepository {
 
     public int getTotalData() {
         return daftarPutusan.size();
+    }
+
+    public int getTotalBonus() {
+        return daftarBonus.size();
+    }
+
+    public int getTotalGabungan() {
+        return daftarPutusan.size() + daftarBonus.size();
+    }
+
+    public List<Putusan> getDaftarBonus() {
+        return new ArrayList<>(daftarBonus);
+    }
+
+    public List<Putusan> getDaftarGabungan() {
+
+        List<Putusan> semua = new ArrayList<>();
+
+        semua.addAll(daftarPutusan);
+        semua.addAll(daftarBonus);
+
+        return semua;
     }
 
 
@@ -124,7 +154,6 @@ public class KnowledgeRepository {
                 hasil.add(p);
             }
         }
-
         return hasil;
     }
 }
