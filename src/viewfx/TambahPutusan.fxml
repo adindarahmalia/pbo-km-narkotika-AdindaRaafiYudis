@@ -223,7 +223,7 @@
                     <ColumnConstraints hgrow="ALWAYS"/>
                 </columnConstraints>
 
-                <Label text="Vonis Hukuman (bulan)"
+                <Label text="Vo nis Hukuman (bulan)"
                        GridPane.rowIndex="0"
                        GridPane.columnIndex="0"/>
 
