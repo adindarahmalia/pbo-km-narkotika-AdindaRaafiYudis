@@ -130,6 +130,11 @@ public class TambahPutusanController {
         resetForm();
     }
 
+    @FXML
+    private void handleKembali() {
+
+    }
+
     private boolean validasiForm() {
 
         if (txtNomorPerkara.getText().isBlank()) return false;

@@ -66,11 +66,11 @@ public class RepositoryController {
 
         cbPengadilan.setItems(FXCollections.observableArrayList(
                 "Semua",
-                "Pengadilan Negeri Malang",
-                "Pengadilan Negeri Surabaya",
-                "Pengadilan Negeri Jakarta Selatan",
-                "Pengadilan Negeri Bandung",
-                "Pengadilan Negeri Semarang"
+                "PN Malang",
+                "PN Surabaya",
+                "PN Selatan",
+                "PN Bandung",
+                "PN Semarang"
         ));
 
         cbJenis.setItems(FXCollections.observableArrayList(

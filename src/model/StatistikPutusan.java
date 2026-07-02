@@ -99,7 +99,6 @@ public class StatistikPutusan {
     }
 
     public void tampilkanLaporan() {
-        System.out.println("=== STATISTIK PUTUSAN ===");
         System.out.println("Total Putusan              : " + totalPutusan);
         System.out.println("Rata-rata Vonis            : " + rataRataVonis + " bulan");
         System.out.println("Rata-rata Denda            : Rp" + rataRataDenda);
@@ -108,7 +107,7 @@ public class StatistikPutusan {
         System.out.println("Distribusi Jenis Narkotika : " + distribusiJenisNarkotika);
     }
 
-    // ================= STATIC HELPER UNTUK DASHBOARD / CONTROLLER =================
+
 
     public static int totalPutusan(List<Putusan> data) {
         return new StatistikPutusan(data).getTotalPutusan();

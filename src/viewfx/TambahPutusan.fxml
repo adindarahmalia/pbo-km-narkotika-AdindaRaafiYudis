@@ -9,13 +9,20 @@
             fx:controller="controllerfx.TambahPutusanController">
     <children>
         <ScrollPane fitToWidth="true"
-                    prefWidth="950"
-                    prefHeight="720"
+                    fitToHeight="true"
+                    pannable="true"
+                    AnchorPane.topAnchor="0"
+                    AnchorPane.bottomAnchor="0"
+                    AnchorPane.leftAnchor="0"
+                    AnchorPane.rightAnchor="0"
                     style="-fx-background:#ECEFF1;">
 
             <content>
 
     <VBox spacing="25"
+          fillWidth="true"
+          maxWidth="Infinity"
+          VBox.vgrow="ALWAYS"
           style="-fx-background-color:#ECEFF1;">
         <padding>
             <Insets top="25" right="25" bottom="25" left="25"/>
@@ -25,6 +32,8 @@
                    style="-fx-font-size:30; -fx-font-weight:bold; -fx-text-fill:#1E3A8A;"/>
 
         <VBox spacing="25"
+              fillWidth="true"
+              maxWidth="Infinity"
               style="-fx-background-color:white; -fx-background-radius:15; -fx-border-radius: 15; -fx-border-color:#DDDDDD;">
             <padding>
                 <Insets top="25" right="25" bottom="25" left="25"/>
@@ -35,6 +44,12 @@
 
             <GridPane hgap="20"
                       vgap="18">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="170"
+                                       prefWidth="220"/>
+
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
 
                 <Label text="Nomor Perkara"
                        GridPane.rowIndex="0"
@@ -42,8 +57,9 @@
 
                 <TextField fx:id="txtNomorPerkara"
                            promptText="Masukkan Nomor Perkara"
-                           prefWidth="420"
+                           maxWidth="Infinity"
                            GridPane.rowIndex="0"
+                           GridPane.hgrow="ALWAYS"
                            GridPane.columnIndex="1"/>
 
                 <Label text="Pengadilan"
@@ -52,7 +68,7 @@
 
                 <ComboBox fx:id="cbPengadilan"
                           promptText="Pilih Pengadilan"
-                          prefWidth="420"
+                          maxWidth="Infinity"
                           GridPane.rowIndex="1"
                           GridPane.columnIndex="1"/>
 
@@ -61,7 +77,7 @@
                        GridPane.columnIndex="0"/>
 
                 <DatePicker fx:id="dpTanggal"
-                            prefWidth="420"
+                            maxWidth="Infinity"
                             GridPane.rowIndex="2"
                             GridPane.columnIndex="1"/>
             </GridPane>
@@ -73,15 +89,22 @@
 
             <GridPane hgap="20"
                       vgap="18">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="170"
+                                       prefWidth="180"/>
+
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
 
                 <Label text="Nama Terdakwa"
                        GridPane.rowIndex="0"
                        GridPane.columnIndex="0"/>
 
                 <TextField fx:id="txtNama"
-                           prefWidth="420"
+                           maxWidth="Infinity"
                            promptText="Masukkan Nama"
                            GridPane.rowIndex="0"
+                           GridPane.hgrow="ALWAYS"
                            GridPane.columnIndex="1"/>
 
                 <Label text="Umur"
@@ -89,9 +112,10 @@
                        GridPane.columnIndex="0"/>
 
                 <TextField fx:id="txtUmur"
-                           prefWidth="420"
+                           maxWidth="Infinity"
                            promptText="Umur"
                            GridPane.rowIndex="1"
+                           GridPane.hgrow="ALWAYS"
                            GridPane.columnIndex="1"/>
 
                 <Label text="Jenis Kelamin"
@@ -99,7 +123,7 @@
                        GridPane.columnIndex="0"/>
 
                 <ComboBox fx:id="cbJenisKelamin"
-                          prefWidth="420"
+                          maxWidth="Infinity"
                           promptText="Pilih Jenis Kelamin"
                           GridPane.rowIndex="2"
                           GridPane.columnIndex="1"/>
@@ -109,9 +133,10 @@
                        GridPane.columnIndex="0"/>
 
                 <TextField fx:id="txtPekerjaan"
-                           prefWidth="420"
+                           maxWidth="Infinity"
                            promptText="Masukkan Pekerjaan"
                            GridPane.rowIndex="3"
+                           GridPane.hgrow="ALWAYS"
                            GridPane.columnIndex="1"/>
 
             </GridPane>
@@ -122,13 +147,19 @@
 
             <GridPane hgap="20"
                       vgap="18">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="170"
+                                       prefWidth="180"/>
+
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
 
                 <Label text="Jenis Narkotika"
                        GridPane.rowIndex="0"
                        GridPane.columnIndex="0"/>
 
                 <ComboBox fx:id="cbJenis"
-                          prefWidth="420"
+                          maxWidth="Infinity"
                           promptText="Pilih Jenis"
                           GridPane.rowIndex="0"
                           GridPane.columnIndex="1"/>
@@ -138,9 +169,10 @@
                        GridPane.columnIndex="0"/>
 
                 <TextField fx:id="txtBerat"
-                           prefWidth="420"
+                           maxWidth="Infinity"
                            promptText="0.0"
                            GridPane.rowIndex="1"
+                           GridPane.hgrow="ALWAYS"
                            GridPane.columnIndex="1"/>
             </GridPane>
             <Separator/>
@@ -150,14 +182,21 @@
 
             <GridPane hgap="20"
                       vgap="18">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="170"
+                                       prefWidth="180"/>
+
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
 
                 <Label text="Pasal Dilanggar"
                        GridPane.rowIndex="0"
                        GridPane.columnIndex="0"/>
 
                 <TextField fx:id="txtPasal"
-                           prefWidth="420"
+                           maxWidth="Infinity"
                            GridPane.rowIndex="0"
+                           GridPane.hgrow="ALWAYS"
                            GridPane.columnIndex="1"/>
 
                 <Label text="Peran Terdakwa"
@@ -165,7 +204,7 @@
                        GridPane.columnIndex="0"/>
 
                 <ComboBox fx:id="cbPeran"
-                          prefWidth="420"
+                          maxWidth="Infinity"
                           promptText="Pilih Peran"
                           GridPane.rowIndex="1"
                           GridPane.columnIndex="1"/>
@@ -177,15 +216,22 @@
 
             <GridPane hgap="20"
                       vgap="18">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="170"
+                                       prefWidth="180"/>
 
-                <Label text="Vonis Hukuman (bulan)"
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <Label text="Vo nis Hukuman (bulan)"
                        GridPane.rowIndex="0"
                        GridPane.columnIndex="0"/>
 
                 <TextField fx:id="txtVonis"
-                           prefWidth="420"
+                           maxWidth="Infinity"
                            promptText="Masukkan Lama Vonis (bulan)"
                            GridPane.rowIndex="0"
+                           GridPane.hgrow="ALWAYS"
                            GridPane.columnIndex="1"/>
 
                 <Label text="Vonis Denda"
@@ -193,8 +239,9 @@
                        GridPane.columnIndex="0"/>
 
                 <TextField fx:id="txtDenda"
-                           prefWidth="420"
+                           maxWidth="Infinity"
                            GridPane.rowIndex="1"
+                           GridPane.hgrow="ALWAYS"
                            GridPane.columnIndex="1"/>
 
                 <Label text="Nama Hakim"
@@ -202,8 +249,9 @@
                        GridPane.columnIndex="0"/>
 
                 <TextField fx:id="txtHakim"
-                           prefWidth="420"
+                           maxWidth="Infinity"
                            GridPane.rowIndex="2"
+                           GridPane.hgrow="ALWAYS"
                            GridPane.columnIndex="1"/>
             </GridPane>
             <Separator/>

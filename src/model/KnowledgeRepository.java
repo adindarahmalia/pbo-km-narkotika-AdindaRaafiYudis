@@ -44,6 +44,7 @@ public class KnowledgeRepository {
 
 
 
+
     public Putusan cariByNomor(String nomor) {
         if (nomor == null || nomor.trim().isEmpty()) {
             return null;
@@ -124,7 +125,6 @@ public class KnowledgeRepository {
                 hasil.add(p);
             }
         }
-
         return hasil;
     }
 }
