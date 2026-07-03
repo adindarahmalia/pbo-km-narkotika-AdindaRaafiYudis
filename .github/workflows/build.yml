@@ -1,0 +1,52 @@
+name: Java CI Build
+
+on:
+  push:
+    branches:
+      - develop
+
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Verify Project Structure
+        run: |
+          echo "===== ROOT ====="
+          ls -la
+
+          echo ""
+          echo "===== SRC ====="
+          find src -type f
+
+      - name: Build Console MVC
+        run: |
+          mkdir -p out
+
+          javac \
+            -encoding UTF-8 \
+            -sourcepath src \
+            -d out \
+            src/app/Main.java
+
+      - name: Verify Build Output
+        run: |
+          echo "===== BUILD OUTPUT ====="
+          find out -type f
+
+      - name: Build Success
+        run: echo "✅ Build completed successfully."

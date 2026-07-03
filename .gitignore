@@ -1,0 +1,7 @@
+.idea/
+*.iml
+out/
+output/
+target/
+*.class
+.DS_Store

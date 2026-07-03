@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllerfx.TambahPutusanController">
+    <children>
+        <ScrollPane fitToWidth="true"
+                    fitToHeight="true"
+                    pannable="true"
+                    AnchorPane.topAnchor="0"
+                    AnchorPane.bottomAnchor="0"
+                    AnchorPane.leftAnchor="0"
+                    AnchorPane.rightAnchor="0"
+                    style="-fx-background:#ECEFF1;">
+
+            <content>
+
+    <VBox spacing="25"
+          fillWidth="true"
+          maxWidth="Infinity"
+          VBox.vgrow="ALWAYS"
+          style="-fx-background-color:#ECEFF1;">
+        <padding>
+            <Insets top="25" right="25" bottom="25" left="25"/>
+        </padding>
+
+            <Label text="Tambah Data Putusan"
+                   style="-fx-font-size:30; -fx-font-weight:bold; -fx-text-fill:#1E3A8A;"/>
+
+        <VBox spacing="25"
+              fillWidth="true"
+              maxWidth="Infinity"
+              style="-fx-background-color:white; -fx-background-radius:15; -fx-border-radius: 15; -fx-border-color:#DDDDDD;">
+            <padding>
+                <Insets top="25" right="25" bottom="25" left="25"/>
+            </padding>
+
+                <Label text="DATA PERKARA"
+                       style="-fx-font-size:20; -fx-font-weight:bold; -fx-text-fill:#1E3A8A;"/>
+
+            <GridPane hgap="20"
+                      vgap="18">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="170"
+                                       prefWidth="220"/>
+
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <Label text="Nomor Perkara"
+                       GridPane.rowIndex="0"
+                       GridPane.columnIndex="0"/>
+
+                <TextField fx:id="txtNomorPerkara"
+                           promptText="Masukkan Nomor Perkara"
+                           maxWidth="Infinity"
+                           GridPane.rowIndex="0"
+                           GridPane.hgrow="ALWAYS"
+                           GridPane.columnIndex="1"/>
+
+                <Label text="Pengadilan"
+                       GridPane.rowIndex="1"
+                       GridPane.columnIndex="0"/>
+
+                <ComboBox fx:id="cbPengadilan"
+                          promptText="Pilih Pengadilan"
+                          maxWidth="Infinity"
+                          GridPane.rowIndex="1"
+                          GridPane.columnIndex="1"/>
+
+                <Label text="Tanggal Putusan"
+                       GridPane.rowIndex="2"
+                       GridPane.columnIndex="0"/>
+
+                <DatePicker fx:id="dpTanggal"
+                            maxWidth="Infinity"
+                            GridPane.rowIndex="2"
+                            GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <Separator/>
+
+            <Label text="DATA TERDAKWA"
+                   style="-fx-font-size:20; -fx-font-weight:bold; -fx-text-fill:#1E3A8A;"/>
+
+            <GridPane hgap="20"
+                      vgap="18">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="170"
+                                       prefWidth="180"/>
+
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <Label text="Nama Terdakwa"
+                       GridPane.rowIndex="0"
+                       GridPane.columnIndex="0"/>
+
+                <TextField fx:id="txtNama"
+                           maxWidth="Infinity"
+                           promptText="Masukkan Nama"
+                           GridPane.rowIndex="0"
+                           GridPane.hgrow="ALWAYS"
+                           GridPane.columnIndex="1"/>
+
+                <Label text="Umur"
+                       GridPane.rowIndex="1"
+                       GridPane.columnIndex="0"/>
+
+                <TextField fx:id="txtUmur"
+                           maxWidth="Infinity"
+                           promptText="Umur"
+                           GridPane.rowIndex="1"
+                           GridPane.hgrow="ALWAYS"
+                           GridPane.columnIndex="1"/>
+
+                <Label text="Jenis Kelamin"
+                       GridPane.rowIndex="2"
+                       GridPane.columnIndex="0"/>
+
+                <ComboBox fx:id="cbJenisKelamin"
+                          maxWidth="Infinity"
+                          promptText="Pilih Jenis Kelamin"
+                          GridPane.rowIndex="2"
+                          GridPane.columnIndex="1"/>
+
+                <Label text="Pekerjaan"
+                       GridPane.rowIndex="3"
+                       GridPane.columnIndex="0"/>
+
+                <TextField fx:id="txtPekerjaan"
+                           maxWidth="Infinity"
+                           promptText="Masukkan Pekerjaan"
+                           GridPane.rowIndex="3"
+                           GridPane.hgrow="ALWAYS"
+                           GridPane.columnIndex="1"/>
+
+            </GridPane>
+            <Separator/>
+
+            <Label text="DATA NARKOTIKA"
+                   style="-fx-font-size:20; -fx-font-weight:bold; -fx-text-fill:#1E3A8A;"/>
+
+            <GridPane hgap="20"
+                      vgap="18">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="170"
+                                       prefWidth="180"/>
+
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <Label text="Jenis Narkotika"
+                       GridPane.rowIndex="0"
+                       GridPane.columnIndex="0"/>
+
+                <ComboBox fx:id="cbJenis"
+                          maxWidth="Infinity"
+                          promptText="Pilih Jenis"
+                          GridPane.rowIndex="0"
+                          GridPane.columnIndex="1"/>
+
+                <Label text="Berat Barang Bukti (gram)"
+                       GridPane.rowIndex="1"
+                       GridPane.columnIndex="0"/>
+
+                <TextField fx:id="txtBerat"
+                           maxWidth="Infinity"
+                           promptText="0.0"
+                           GridPane.rowIndex="1"
+                           GridPane.hgrow="ALWAYS"
+                           GridPane.columnIndex="1"/>
+            </GridPane>
+            <Separator/>
+
+            <Label text="DATA HUKUM"
+                   style="-fx-font-size:20; -fx-font-weight:bold; -fx-text-fill:#1E3A8A;"/>
+
+            <GridPane hgap="20"
+                      vgap="18">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="170"
+                                       prefWidth="180"/>
+
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <Label text="Pasal Dilanggar"
+                       GridPane.rowIndex="0"
+                       GridPane.columnIndex="0"/>
+
+                <TextField fx:id="txtPasal"
+                           maxWidth="Infinity"
+                           GridPane.rowIndex="0"
+                           GridPane.hgrow="ALWAYS"
+                           GridPane.columnIndex="1"/>
+
+                <Label text="Peran Terdakwa"
+                       GridPane.rowIndex="1"
+                       GridPane.columnIndex="0"/>
+
+                <ComboBox fx:id="cbPeran"
+                          maxWidth="Infinity"
+                          promptText="Pilih Peran"
+                          GridPane.rowIndex="1"
+                          GridPane.columnIndex="1"/>
+            </GridPane>
+            <Separator/>
+
+            <Label text="PUTUSAN"
+                   style="-fx-font-size:20; -fx-font-weight:bold; -fx-text-fill:#1E3A8A;"/>
+
+            <GridPane hgap="20"
+                      vgap="18">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="170"
+                                       prefWidth="180"/>
+
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <Label text="Vo nis Hukuman (bulan)"
+                       GridPane.rowIndex="0"
+                       GridPane.columnIndex="0"/>
+
+                <TextField fx:id="txtVonis"
+                           maxWidth="Infinity"
+                           promptText="Masukkan Lama Vonis (bulan)"
+                           GridPane.rowIndex="0"
+                           GridPane.hgrow="ALWAYS"
+                           GridPane.columnIndex="1"/>
+
+                <Label text="Vonis Denda"
+                       GridPane.rowIndex="1"
+                       GridPane.columnIndex="0"/>
+
+                <TextField fx:id="txtDenda"
+                           maxWidth="Infinity"
+                           GridPane.rowIndex="1"
+                           GridPane.hgrow="ALWAYS"
+                           GridPane.columnIndex="1"/>
+
+                <Label text="Nama Hakim"
+                       GridPane.rowIndex="2"
+                       GridPane.columnIndex="0"/>
+
+                <TextField fx:id="txtHakim"
+                           maxWidth="Infinity"
+                           GridPane.rowIndex="2"
+                           GridPane.hgrow="ALWAYS"
+                           GridPane.columnIndex="1"/>
+            </GridPane>
+            <Separator/>
+
+            <HBox spacing="20"
+                  alignment="CENTER_RIGHT">
+
+                <Button fx:id="btnReset"
+                        text="Reset"
+                        prefWidth="130"
+                        prefHeight="40"
+                onAction="#handleReset"/>
+
+                <Button fx:id="btnKembali"
+                        text="Kembali"
+                        prefWidth="130"
+                        prefHeight="40"
+                onAction="#handleKembali"/>
+
+                <Button fx:id="btnSimpan"
+                        text="Simpan"
+                        prefWidth="150"
+                        prefHeight="45"
+                onAction="#handleSimpan"/>
+            </HBox>
+        </VBox>
+    </VBox>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>

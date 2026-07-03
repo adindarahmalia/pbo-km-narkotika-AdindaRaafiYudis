@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<?import javafx.scene.chart.BarChart?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllerfx.RepositoryController">
+    <children>
+        <VBox spacing="25"
+              AnchorPane.topAnchor="20"
+              AnchorPane.leftAnchor="20"
+              AnchorPane.rightAnchor="20"
+              AnchorPane.bottomAnchor="20">
+
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Repository Putusan"
+                   style="-fx-font-size:30; -fx-font-weight:bold; -fx-text-fill:#1E3A8A;"/>
+
+            <HBox spacing="15">
+
+                <TextField fx:id="txtSearch"
+                           promptText="Cari Nomor Perkara / Nama Terdakwa"
+                           prefWidth="450"/>
+
+                <Button fx:id="btnCari"
+                        onAction="#handleCari"
+                        text="Cari"
+                        prefWidth="120"/>
+            </HBox>
+
+            <HBox spacing="20">
+                <VBox spacing="5">
+                    <Label text="Filter Pengadilan"/>
+
+                    <ComboBox fx:id="cbPengadilan"
+                              prefWidth="220"
+                    onAction="#handleFilterPengadilan"/>
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Filter Jenis Narkotika"/>
+
+                    <ComboBox fx:id="cbJenis"
+                              prefWidth="220"
+                    onAction="#handleFilterJenis"/>
+                </VBox>
+            </HBox>
+
+            <TableView fx:id="tableRepository"
+                       prefHeight="450">
+
+                <columns>
+                    <TableColumn fx:id="colNo"
+                            text="No"
+                                 prefWidth="60"/>
+                    <TableColumn fx:id="colNomorPerkara"
+                            text="Nomor Perkara"
+                                 prefWidth="220"/>
+                    <TableColumn fx:id="colNamaTerdakwa"
+                            text="Nama Terdakwa"
+                                 prefWidth="280"/>
+                    <TableColumn fx:id="colJenis"
+                            text="Jenis"
+                                 prefWidth="150"/>
+                    <TableColumn fx:id="colVonis"
+                            text="Vonis"
+                                 prefWidth="120"/>
+                    <TableColumn fx:id="colPengadilan"
+                            text="Pengadilan"
+                                 prefWidth="220"/>
+                </columns>
+            </TableView>
+
+            <HBox spacing="15"
+                  alignment="CENTER_RIGHT">
+
+                <Button fx:id="btnRefresh"
+                        text="Refresh"
+                        prefWidth="120"
+                onAction="#handleRefresh"/>
+                <Button fx:id="btnDetail"
+                        text="Detail"
+                        prefWidth="120"
+                onAction="#handleDetail"/>
+                <Button fx:id="btnHapus"
+                        text="Hapus"
+                        prefWidth="120"
+                        onAction="#handleHapus"/>
+            </HBox>
+        </VBox>
+    </children>
+
+</AnchorPane>
